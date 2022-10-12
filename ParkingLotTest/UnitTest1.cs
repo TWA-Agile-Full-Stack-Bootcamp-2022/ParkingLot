@@ -191,5 +191,21 @@ namespace ParkingLotTest
             //then
             Assert.Equal(car, lot2.PickUpCar(ticket));
         }
+
+        [Fact]
+        public void Should_can_parking_up_when_boy_has_two_lot_and_parking_to_lot2()
+        {
+            //given
+            var lot1 = new Lot(1);
+            var lot2 = new Lot(2);
+            var parkingBoy = new ParkingBoy(new List<Lot>() { lot1, lot2 });
+            parkingBoy.Parking(new Car());
+            var car = new Car();
+            var ticket = parkingBoy.Parking(car);
+            //when
+            var pickUp = parkingBoy.PickUp(ticket);
+            //then
+            Assert.Equal(car, pickUp);
+        }
     }
 }

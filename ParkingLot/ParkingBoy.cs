@@ -39,7 +39,8 @@ namespace ParkingLot
                 throw new ParkingException("Please provide your parking ticket.");
             }
 
-            var car = lots[0].PickUpCar(ticket);
+            var car = lots.Select(lot => lot.PickUpCar(ticket)).FirstOrDefault(car => car != null);
+
             if (car == null)
             {
                 throw new ParkingException("Unrecognized parking ticket.");
