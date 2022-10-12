@@ -29,13 +29,7 @@ namespace ParkingLot
 
         public List<Ticket> Parking(List<Car> cars)
         {
-            var canParkingLot = lots.FirstOrDefault(lot => lot.HasPosition(cars.Count));
-            if (canParkingLot == null)
-            {
-                throw new LotFullException("Not enough positions.");
-            }
-
-            return canParkingLot.ParkingCar(cars);
+            return cars.Select(Parking).ToList();
         }
 
         public Car PickUp(Ticket ticket)

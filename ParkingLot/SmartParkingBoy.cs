@@ -5,10 +5,6 @@ namespace ParkingLot
 {
     public class SmartParkingBoy : ParkingBoy
     {
-        public SmartParkingBoy(Lot parkingLot) : base(parkingLot)
-        {
-        }
-
         public SmartParkingBoy(List<Lot> parkingLots) : base(parkingLots)
         {
         }
