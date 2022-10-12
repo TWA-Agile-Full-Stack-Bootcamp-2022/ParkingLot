@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace ParkingLotTest
 {
     using ParkingLot;
@@ -37,6 +39,26 @@ namespace ParkingLotTest
             Car pickUpCar = parkingBoy.PickUp(ticket);
             //then
             Assert.Equal(car, pickUpCar);
+        }
+
+        [Fact]
+        public void Should_return_tickets_when_batch_parking_car_given_parking_boy_and_cars()
+        {
+            var car1 = new Car();
+            var car2 = new Car();
+            var car3 = new Car();
+            List<Car> cars = new List<Car>();
+            cars.Add(car1);
+            cars.Add(car2);
+            cars.Add(car3);
+            var paringLot = new Lot();
+            var parkingBoy = new ParkingBoy(paringLot);
+            //when
+            var tickets = parkingBoy.Parking(cars);
+            //then
+            Assert.Equal(car1, tickets[0].GetCar());
+            Assert.Equal(car2, tickets[1].GetCar());
+            Assert.Equal(car3, tickets[2].GetCar());
         }
     }
 }
