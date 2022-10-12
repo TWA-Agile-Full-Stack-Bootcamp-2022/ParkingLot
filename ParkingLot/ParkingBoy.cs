@@ -10,7 +10,15 @@ namespace ParkingLot
 
         public Ticket Parking(Car car)
         {
-           return new Ticket(car);
+            var ticket = new Ticket(car);
+            lot.ParkingCar(car, ticket);
+            return ticket;
+        }
+
+        public Car PickUp(Ticket ticket)
+        {
+            var car = lot.PickUpCar(ticket);
+            return car;
         }
     }
 }
