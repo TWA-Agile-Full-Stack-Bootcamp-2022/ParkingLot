@@ -26,7 +26,7 @@ namespace ParkingLot
         {
             if (ticket == null)
             {
-                return null;
+                throw new ParkingException("Please provide your parking ticket.");
             }
 
             var car = lot.PickUpCar(ticket);

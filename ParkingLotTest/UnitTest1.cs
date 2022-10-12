@@ -90,10 +90,9 @@ namespace ParkingLotTest
             //given
             var paringLot = new Lot();
             var parkingBoy = new ParkingBoy(paringLot);
-            //when
-            var pickUp = parkingBoy.PickUp(null);
             //then
-            Assert.Null(pickUp);
+            var parkingException = Assert.Throws<ParkingException>(() => parkingBoy.PickUp(null));
+            Assert.Equal("Please provide your parking ticket.", parkingException.Message);
         }
 
         [Fact]
