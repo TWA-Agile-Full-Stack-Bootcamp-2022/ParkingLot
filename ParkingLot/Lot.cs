@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -54,6 +55,12 @@ namespace ParkingLot
             var pickUpCar = lotSpace[ticket];
             lotSpace.Remove(ticket);
             return pickUpCar;
+        }
+
+        public bool HasPosition()
+        {
+            var dictionary = this.lotSpace;
+            return dictionary.Count < this.size;
         }
     }
 }

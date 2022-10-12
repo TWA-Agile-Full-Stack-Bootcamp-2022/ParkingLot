@@ -5,21 +5,31 @@ namespace ParkingLot
 {
     public class ParkingBoy
     {
-        private Lot lot;
+        private List<Lot> lots = new List<Lot>();
 
         public ParkingBoy(Lot parkingLot)
         {
-            this.lot = parkingLot;
+            this.lots.Add(parkingLot);
+        }
+
+        public ParkingBoy(List<Lot> parkingLots)
+        {
+            lots = parkingLots;
         }
 
         public Ticket Parking(Car car)
         {
-            return lot.ParkingCar(car);
+            foreach (var t in lots.Where(t => t.HasPosition()))
+            {
+                return t.ParkingCar(car);
+            }
+
+            throw new LotFullException("Not enough positions.");
         }
 
         public List<Ticket> Parking(List<Car> cars)
         {
-            return lot.ParkingCar(cars);
+            return lots[0].ParkingCar(cars);
         }
 
         public Car PickUp(Ticket ticket)
@@ -29,7 +39,7 @@ namespace ParkingLot
                 throw new ParkingException("Please provide your parking ticket.");
             }
 
-            var car = lot.PickUpCar(ticket);
+            var car = lots[0].PickUpCar(ticket);
             if (car == null)
             {
                 throw new ParkingException("Unrecognized parking ticket.");

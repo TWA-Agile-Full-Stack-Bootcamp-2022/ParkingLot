@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 
 namespace ParkingLotTest
@@ -174,6 +175,21 @@ namespace ParkingLotTest
             //then
             var lotFullException = Assert.Throws<LotFullException>(() => parkingBoy.Parking(car));
             Assert.Equal("Not enough positions.", lotFullException.Message);
+        }
+
+        [Fact]
+        public void Should_parking_to_lot_2_when_parking_given_parking_boy_has_two_lot_and_lot1_is_full()
+        {
+            //given
+            var lot1 = new Lot(1);
+            var lot2 = new Lot(2);
+            var parkingBoy = new ParkingBoy(new List<Lot>() { lot1, lot2 });
+            parkingBoy.Parking(new Car());
+            var car = new Car();
+            //when
+            var ticket = parkingBoy.Parking(car);
+            //then
+            Assert.Equal(car, lot2.PickUpCar(ticket));
         }
     }
 }
