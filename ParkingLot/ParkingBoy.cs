@@ -30,6 +30,11 @@ namespace ParkingLot
             }
 
             var car = lot.PickUpCar(ticket);
+            if (car == null)
+            {
+                throw new ParkingException("Unrecognized parking ticket.");
+            }
+
             return car;
         }
     }

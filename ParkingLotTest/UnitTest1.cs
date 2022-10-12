@@ -102,25 +102,24 @@ namespace ParkingLotTest
             //given
             var paringLot = new Lot();
             var parkingBoy = new ParkingBoy(paringLot);
-           //when
-            var pickUp = parkingBoy.PickUp(new Ticket(null));
-           //then
-            Assert.Null(pickUp);
+            //then
+            var parkingException = Assert.Throws<ParkingException>(() => parkingBoy.PickUp(new Ticket(new Car())));
+            Assert.Equal("Unrecognized parking ticket.", parkingException.Message);
         }
 
         [Fact]
         public void Should_return_null_when_ticket_is_used()
         {
-           //given
+            //given
             var paringLot = new Lot();
             var parkingBoy = new ParkingBoy(paringLot);
             var car = new Car();
             var ticket = parkingBoy.Parking(car);
             parkingBoy.PickUp(ticket);
-            //when
-            var pickUp = parkingBoy.PickUp(ticket);
+
             //then
-            Assert.Null(pickUp);
+            var parkingException = Assert.Throws<ParkingException>(() => parkingBoy.PickUp(ticket));
+            Assert.Equal("Unrecognized parking ticket.", parkingException.Message);
         }
 
         [Fact]
