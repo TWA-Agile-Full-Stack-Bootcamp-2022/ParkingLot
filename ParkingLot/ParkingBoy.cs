@@ -28,6 +28,11 @@ namespace ParkingLot
 
         public Car PickUp(Ticket ticket)
         {
+            if (ticket == null)
+            {
+                return null;
+            }
+
             var car = lot.PickUpCar(ticket);
             return car;
         }
