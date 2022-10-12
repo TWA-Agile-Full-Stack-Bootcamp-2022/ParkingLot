@@ -22,13 +22,7 @@ namespace ParkingLot
 
         public new List<Ticket> Parking(List<Car> cars)
         {
-            var maxSpaceLot = lots.OrderByDescending(t => t.GetPosition()).First();
-            if (maxSpaceLot.HasPosition(cars.Count))
-            {
-                return maxSpaceLot.ParkingCar(cars);
-            }
-
-            throw new LotFullException("Not enough positions.");
+           return cars.Select(Parking).ToList();
         }
     }
 }
