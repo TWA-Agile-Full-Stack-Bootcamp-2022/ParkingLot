@@ -139,5 +139,21 @@ namespace ParkingLotTest
             //then
             Assert.Null(ticket);
         }
+
+        [Fact]
+        public void Should_can_not_batch_parking_when_lot_is_full()
+        {
+            //given
+            var paringLot = new Lot(2);
+            var parkingBoy = new ParkingBoy(paringLot);
+            var car1 = new Car();
+            var car2 = new Car();
+            var car3 = new Car();
+            parkingBoy.Parking(car1);
+            //when
+            var tickets = parkingBoy.Parking(new List<Car> { car2, car3 });
+            //then
+            Assert.Empty(tickets);
+        }
     }
 }

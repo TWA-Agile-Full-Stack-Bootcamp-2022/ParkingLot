@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ParkingLot
 {
@@ -27,12 +28,20 @@ namespace ParkingLot
             return ticket;
         }
 
-        public void ParkingCar(List<Car> cars, List<Ticket> tickets)
+        public List<Ticket> ParkingCar(List<Car> cars)
         {
+            if (size != 0 && lotSpace.Count + cars.Count > size)
+            {
+                return new List<Ticket>();
+            }
+
+            var tickets = cars.Select(t => new Ticket(t)).ToList();
             for (var i = 0; i < tickets.Count; i++)
             {
                 lotSpace.Add(tickets[i], cars[i]);
             }
+
+            return tickets;
         }
 
         public Car PickUpCar(Ticket ticket)
