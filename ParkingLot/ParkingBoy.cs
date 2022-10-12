@@ -19,7 +19,7 @@ namespace ParkingLot
 
         public Ticket Parking(Car car)
         {
-            foreach (var t in lots.Where(t => t.HasPosition()))
+            foreach (var t in lots.Where(t => t.HasPosition(1)))
             {
                 return t.ParkingCar(car);
             }
@@ -29,7 +29,13 @@ namespace ParkingLot
 
         public List<Ticket> Parking(List<Car> cars)
         {
-            return lots[0].ParkingCar(cars);
+            var canParkingLot = lots.FirstOrDefault(lot => lot.HasPosition(cars.Count));
+            if (canParkingLot == null)
+            {
+                throw new LotFullException("Not enough positions.");
+            }
+
+            return canParkingLot.ParkingCar(cars);
         }
 
         public Car PickUp(Ticket ticket)

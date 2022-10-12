@@ -193,7 +193,7 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Should_can_parking_up_when_boy_has_two_lot_and_parking_to_lot2()
+        public void Should_can_pick_up_when_boy_has_two_lot_and_parking_to_lot2()
         {
             //given
             var lot1 = new Lot(1);
@@ -206,6 +206,22 @@ namespace ParkingLotTest
             var pickUp = parkingBoy.PickUp(ticket);
             //then
             Assert.Equal(car, pickUp);
+        }
+
+        [Fact]
+        public void Should_can_bath_parking_given_boy_has_two_lot_and_one_is_over_size()
+        {
+            //given
+            var lot1 = new Lot(1);
+            var lot2 = new Lot(2);
+            var parkingBoy = new ParkingBoy(new List<Lot>() { lot1, lot2 });
+            var car1 = new Car();
+            var car2 = new Car();
+            //when
+            var tickets = parkingBoy.Parking(new List<Car>() { car1, car2 });
+            //then
+            Assert.Equal(car1, lot2.PickUpCar(tickets[0]));
+            Assert.Equal(car2, lot2.PickUpCar(tickets[1]));
         }
     }
 }
