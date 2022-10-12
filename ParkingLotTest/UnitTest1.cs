@@ -132,10 +132,9 @@ namespace ParkingLotTest
             var car3 = new Car();
             parkingBoy.Parking(car1);
             parkingBoy.Parking(car2);
-            //when
-            var ticket = parkingBoy.Parking(car3);
             //then
-            Assert.Null(ticket);
+            var lotFullException = Assert.Throws<LotFullException>(() => parkingBoy.Parking(car3));
+            Assert.Equal("Not enough positions.", lotFullException.Message);
         }
 
         [Fact]
@@ -168,9 +167,9 @@ namespace ParkingLotTest
             }
 
             //when
-            var ticket = parkingBoy.Parking(car);
             //then
-            Assert.Null(ticket);
+            var lotFullException = Assert.Throws<LotFullException>(() => parkingBoy.Parking(car));
+            Assert.Equal("Not enough positions.", lotFullException.Message);
         }
     }
 }

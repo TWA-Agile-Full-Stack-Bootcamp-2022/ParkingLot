@@ -18,9 +18,9 @@ namespace ParkingLot
 
         public Ticket ParkingCar(Car car)
         {
-            if (size != 0 && lotSpace.Count >= size)
+            if (lotSpace.Count >= size)
             {
-                return null;
+                throw new LotFullException("Not enough positions.");
             }
 
             var ticket = new Ticket(car);
@@ -30,7 +30,7 @@ namespace ParkingLot
 
         public List<Ticket> ParkingCar(List<Car> cars)
         {
-            if (size != 0 && lotSpace.Count + cars.Count > size)
+            if (lotSpace.Count + cars.Count > size)
             {
                 return new List<Ticket>();
             }
