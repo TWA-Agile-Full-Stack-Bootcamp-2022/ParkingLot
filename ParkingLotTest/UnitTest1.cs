@@ -47,10 +47,12 @@ namespace ParkingLotTest
             var car1 = new Car();
             var car2 = new Car();
             var car3 = new Car();
-            List<Car> cars = new List<Car>();
-            cars.Add(car1);
-            cars.Add(car2);
-            cars.Add(car3);
+            var cars = new List<Car>
+            {
+                car1,
+                car2,
+                car3,
+            };
             var paringLot = new Lot();
             var parkingBoy = new ParkingBoy(paringLot);
             //when
@@ -59,6 +61,27 @@ namespace ParkingLotTest
             Assert.Equal(car1, tickets[0].GetCar());
             Assert.Equal(car2, tickets[1].GetCar());
             Assert.Equal(car3, tickets[2].GetCar());
+        }
+
+        [Fact]
+        public void Should_can_pick_up_use_batch_parking_ticket()
+        {
+            var car1 = new Car();
+            var car2 = new Car();
+            var car3 = new Car();
+            var cars = new List<Car>
+            {
+                car1,
+                car2,
+                car3,
+            };
+            var paringLot = new Lot();
+            var parkingBoy = new ParkingBoy(paringLot);
+            var tickets = parkingBoy.Parking(cars);
+            //then
+            Assert.Equal(car1, parkingBoy.PickUp(tickets[0]));
+            Assert.Equal(car2, parkingBoy.PickUp(tickets[1]));
+            Assert.Equal(car3, parkingBoy.PickUp(tickets[2]));
         }
     }
 }

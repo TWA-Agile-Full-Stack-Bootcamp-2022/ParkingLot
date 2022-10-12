@@ -21,7 +21,9 @@ namespace ParkingLot
 
         public List<Ticket> Parking(List<Car> cars)
         {
-            return cars.Select(t => new Ticket(t)).ToList();
+            var tickets = cars.Select(t => new Ticket(t)).ToList();
+            lot.ParkingCar(cars, tickets);
+            return tickets;
         }
 
         public Car PickUp(Ticket ticket)
