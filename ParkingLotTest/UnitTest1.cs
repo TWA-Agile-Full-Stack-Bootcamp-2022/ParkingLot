@@ -243,7 +243,8 @@ namespace ParkingLotTest
     public class SmartParkingBoyTest
     {
         [Fact]
-        public void Should_parking_to_lot_2_when_parking_given_smart_parking_boy_has_two_lot_and_lot1_has_1_position_and_lot2_has_2position()
+        public void
+            Should_parking_to_lot_2_when_parking_given_smart_parking_boy_has_two_lot_and_lot1_has_1_position_and_lot2_has_2position()
         {
             //given
             var lot1 = new Lot(2);
@@ -258,7 +259,8 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Should_batch_parking_to_lot_2_when_parking_given_smart_parking_boy_has_two_lot_and_lot1_has_1_position_and_lot2_has_2position()
+        public void
+            Should_batch_parking_to_lot_2_when_parking_given_smart_parking_boy_has_two_lot_and_lot1_has_1_position_and_lot2_has_2position()
         {
             //given
             var lot1 = new Lot(2);
@@ -292,7 +294,8 @@ namespace ParkingLotTest
     public class SuperSmartParkingBoyTest
     {
         [Fact]
-        public void Should_parking_to_lot_2_when_parking_given_super_smart_parking_boy_has_two_lot_and_lot1_has_1_position_and_lot2_has_2position()
+        public void
+            Should_parking_to_lot_2_when_parking_given_super_smart_parking_boy_has_two_lot_and_lot1_has_1_position_and_lot2_has_2position()
         {
             //given
             var lot1 = new Lot(20);
@@ -311,7 +314,8 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Should_batch_parking_to_lot_2_when_parking_given_super_smart_parking_boy_has_two_lot_and_lot1_has_1_position_and_lot2_has_2position()
+        public void
+            Should_batch_parking_to_lot_2_when_parking_given_super_smart_parking_boy_has_two_lot_and_lot1_has_1_position_and_lot2_has_2position()
         {
             //given
             var lot1 = new Lot(2);
@@ -324,6 +328,24 @@ namespace ParkingLotTest
             //then
             Assert.Equal(car1, lot1.PickUpCar(tickets[0]));
             Assert.Equal(car2, lot2.PickUpCar(tickets[1]));
+        }
+    }
+
+    public class ParkingManagerTest
+    {
+        [Fact]
+        public void Should_parking_manger_can_parking()
+        {
+            //given
+            var lot1 = new Lot(2);
+            var lot2 = new Lot(3);
+            var parkingBoy = new ParkingManager(new List<Lot>() { lot1, lot2 });
+            var car = new Car();
+            var ticket = parkingBoy.Parking(car);
+            //when
+            var pickUpCar = parkingBoy.PickUp(ticket);
+            //then
+            Assert.Equal(car, pickUpCar);
         }
     }
 }
