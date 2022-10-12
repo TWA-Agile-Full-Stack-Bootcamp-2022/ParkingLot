@@ -4,6 +4,11 @@
     &lt;TestId&gt;xUnit::A8ADF2B5-445D-4A86-8DBF-0350586E4EFC::.NETCoreApp,Version=v3.1::ParkingLotTest.UnitTest1&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=bedcb0c8_002De329_002D490b_002Da027_002D9010aaf871e2/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="UnitTest1 #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::A8ADF2B5-445D-4A86-8DBF-0350586E4EFC::.NETCoreApp,Version=v3.1::ParkingLotTest.UnitTest1&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e2ba4189_002D50e2_002D44ba_002D9ffa_002Ddba7a95e0de7/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="UnitTest1 #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::A8ADF2B5-445D-4A86-8DBF-0350586E4EFC::.NETCoreApp,Version=v3.1::ParkingLotTest.UnitTest1&lt;/TestId&gt;

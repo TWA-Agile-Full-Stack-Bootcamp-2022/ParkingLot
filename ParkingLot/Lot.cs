@@ -21,7 +21,12 @@ namespace ParkingLot
 
         public Car PickUpCar(Ticket ticket)
         {
-            return lotSpace[ticket];
+            if (lotSpace.ContainsKey(ticket))
+            {
+                return lotSpace[ticket];
+            }
+
+            return null;
         }
     }
 }
