@@ -32,7 +32,7 @@ namespace ParkingLot
         {
             if (lotSpace.Count + cars.Count > size)
             {
-                return new List<Ticket>();
+                throw new LotFullException("Not enough positions.");
             }
 
             var tickets = cars.Select(t => new Ticket(t)).ToList();

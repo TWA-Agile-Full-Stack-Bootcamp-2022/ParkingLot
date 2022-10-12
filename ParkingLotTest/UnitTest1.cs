@@ -7,6 +7,10 @@ namespace ParkingLotTest
 
     public class UnitTest1
     {
+        public UnitTest1()
+        {
+        }
+
         [Fact]
         public void Test1()
         {
@@ -147,10 +151,10 @@ namespace ParkingLotTest
             var car2 = new Car();
             var car3 = new Car();
             parkingBoy.Parking(car1);
-            //when
-            var tickets = parkingBoy.Parking(new List<Car> { car2, car3 });
             //then
-            Assert.Empty(tickets);
+            var lotFullException =
+                Assert.Throws<LotFullException>(() => parkingBoy.Parking(new List<Car>() { car2, car3 }));
+            Assert.Equal("Not enough positions.", lotFullException.Message);
         }
 
         [Fact]
