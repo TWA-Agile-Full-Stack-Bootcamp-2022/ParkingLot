@@ -339,13 +339,35 @@ namespace ParkingLotTest
             //given
             var lot1 = new Lot(2);
             var lot2 = new Lot(3);
-            var parkingBoy = new ParkingManager(new List<Lot>() { lot1, lot2 });
+            var parkingBoy = new ParkingManager(new List<Lot>() { lot1, lot2 }, new List<ParkingBoy>());
             var car = new Car();
             var ticket = parkingBoy.Parking(car);
             //when
             var pickUpCar = parkingBoy.PickUp(ticket);
             //then
             Assert.Equal(car, pickUpCar);
+        }
+
+        [Fact]
+        public void Should_parking_manger_can_manger_parking_boys()
+        {
+            //given
+            var lot1 = new Lot(2);
+            var lot2 = new Lot(3);
+            var lot3 = new Lot(3);
+            var lot4 = new Lot(3);
+            var lot5 = new Lot(3);
+            var lot6 = new Lot(3);
+            var smartParkingBoy = new SmartParkingBoy(new List<Lot>() { lot1, lot2 });
+            var superSmartParkingBoy = new SuperSmartParkingBoy(new List<Lot>() { lot3, lot4 });
+            var parkingBoy = new ParkingBoy(new List<Lot>() { lot3, lot4 });
+            var parkingBoys = new List<ParkingBoy>() { smartParkingBoy, superSmartParkingBoy, parkingBoy };
+            var parkingManager = new ParkingManager(new List<Lot>() { lot5, lot6 }, parkingBoys);
+            var car = new Car();
+            //when
+            Ticket ticket = parkingManager.ParkingByBoy(car);
+            //then
+            Assert.Equal(car, lot1.PickUpCar(ticket));
         }
     }
 }
