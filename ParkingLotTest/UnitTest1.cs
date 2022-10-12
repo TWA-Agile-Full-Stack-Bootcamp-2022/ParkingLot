@@ -238,5 +238,21 @@ namespace ParkingLotTest
             //then
             Assert.Equal(car, lot2.PickUpCar(ticket));
         }
+
+        [Fact]
+        public void Should_batch_parking_to_lot_2_when_parking_given_smart_parking_boy_has_two_lot_and_lot1_has_1_position_and_lot2_has_2position()
+        {
+            //given
+            var lot1 = new Lot(2);
+            var lot2 = new Lot(3);
+            var parkingBoy = new SmartParkingBoy(new List<Lot>() { lot1, lot2 });
+            var car1 = new Car();
+            var car2 = new Car();
+            //when
+            var tickets = parkingBoy.Parking(new List<Car>() { car1, car2 });
+            //then
+            Assert.Equal(car1, lot2.PickUpCar(tickets[0]));
+            Assert.Equal(car2, lot2.PickUpCar(tickets[1]));
+        }
     }
 }
