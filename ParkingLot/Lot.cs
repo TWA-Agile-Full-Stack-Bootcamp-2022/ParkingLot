@@ -21,12 +21,14 @@ namespace ParkingLot
 
         public Car PickUpCar(Ticket ticket)
         {
-            if (lotSpace.ContainsKey(ticket))
+            if (!lotSpace.ContainsKey(ticket))
             {
-                return lotSpace[ticket];
+                return null;
             }
 
-            return null;
+            var pickUpCar = lotSpace[ticket];
+            lotSpace.Remove(ticket);
+            return pickUpCar;
         }
     }
 }
