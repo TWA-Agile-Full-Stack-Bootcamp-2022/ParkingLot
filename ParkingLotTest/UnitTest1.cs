@@ -288,4 +288,26 @@ namespace ParkingLotTest
             Assert.Equal(car2, lot2.PickUpCar(tickets[1]));
         }
     }
+
+    public class SuperSmartParkingBoyTest
+    {
+        [Fact]
+        public void Should_parking_to_lot_2_when_parking_given_super_smart_parking_boy_has_two_lot_and_lot1_has_1_position_and_lot2_has_2position()
+        {
+            //given
+            var lot1 = new Lot(20);
+            var lot2 = new Lot(2);
+            for (var i = 0; i < 15; i++)
+            {
+                lot1.ParkingCar(new Car());
+            }
+
+            var parkingBoy = new SuperSmartParkingBoy(new List<Lot>() { lot1, lot2 });
+            var car = new Car();
+            //when
+            var ticket = parkingBoy.Parking(car);
+            //then
+            Assert.Equal(car, lot2.PickUpCar(ticket));
+        }
+    }
 }

@@ -62,5 +62,11 @@ namespace ParkingLot
         {
             return this.size - this.lotSpace.Count;
         }
+
+        public double GetVacancyRate()
+        {
+            var vacancyRate = 1 - ((float)lotSpace.Count / (float)size);
+            return vacancyRate;
+        }
     }
 }
