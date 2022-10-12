@@ -14,9 +14,7 @@ namespace ParkingLot
 
         public Ticket Parking(Car car)
         {
-            var ticket = new Ticket(car);
-            lot.ParkingCar(car, ticket);
-            return ticket;
+            return lot.ParkingCar(car);
         }
 
         public List<Ticket> Parking(List<Car> cars)

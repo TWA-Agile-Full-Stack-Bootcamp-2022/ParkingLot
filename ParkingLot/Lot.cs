@@ -5,10 +5,26 @@ namespace ParkingLot
     public class Lot
     {
         private Dictionary<Ticket, Car> lotSpace = new Dictionary<Ticket, Car>();
-
-        public void ParkingCar(Car car, Ticket ticket)
+        private int size;
+        public Lot(int i)
         {
+            size = i;
+        }
+
+        public Lot()
+        {
+        }
+
+        public Ticket ParkingCar(Car car)
+        {
+            if (size != 0 && lotSpace.Count >= size)
+            {
+                return null;
+            }
+
+            var ticket = new Ticket(car);
             lotSpace.Add(ticket, car);
+            return ticket;
         }
 
         public void ParkingCar(List<Car> cars, List<Ticket> tickets)
