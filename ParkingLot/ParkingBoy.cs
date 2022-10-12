@@ -5,7 +5,7 @@ namespace ParkingLot
 {
     public class ParkingBoy
     {
-        private List<Lot> lots = new List<Lot>();
+        protected List<Lot> lots = new List<Lot>();
 
         public ParkingBoy(Lot parkingLot)
         {

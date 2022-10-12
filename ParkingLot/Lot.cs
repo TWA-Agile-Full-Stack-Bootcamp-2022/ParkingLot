@@ -57,5 +57,10 @@ namespace ParkingLot
             var dictionary = this.lotSpace;
             return dictionary.Count + carsCount <= this.size;
         }
+
+        public int GetPosition()
+        {
+            return this.size - this.lotSpace.Count;
+        }
     }
 }
