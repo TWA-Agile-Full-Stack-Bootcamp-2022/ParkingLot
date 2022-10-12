@@ -19,5 +19,10 @@ namespace ParkingLot
 
             throw new LotFullException("Not enough positions.");
         }
+
+        public new List<Ticket> Parking(List<Car> cars)
+        {
+           return cars.Select(Parking).ToList();
+        }
     }
 }
