@@ -6,7 +6,7 @@ namespace ParkingLot
     public class Lot
     {
         private Dictionary<Ticket, Car> lotSpace = new Dictionary<Ticket, Car>();
-        private int size;
+        private int size = 10;
         public Lot(int i)
         {
             size = i;
