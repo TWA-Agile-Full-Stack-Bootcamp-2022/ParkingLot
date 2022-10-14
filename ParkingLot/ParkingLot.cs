@@ -16,33 +16,58 @@ namespace ParkingLot
 
         public Ticket Park(Car car)
         {
-            if (Capacity <= 0)
-            {
-                throw new NoAvailablePositionException();
-            }
+            CheckCapacity();
 
-            if (parkingCars.ContainsValue(car))
-            {
-                throw new DuplicateCarException();
-            }
+            CheckDuplicateCars(car);
 
+            return ParkANewCar(car);
+        }
+
+        public Car Pickup(Ticket ticket)
+        {
+            CheckTicket(ticket);
+
+            return PickupCarByTicket(ticket);
+        }
+
+        private Car PickupCarByTicket(Ticket ticket)
+        {
+            Capacity++;
+            var pickedCar = parkingCars[ticket];
+            parkingCars.Remove(ticket);
+            return pickedCar;
+        }
+
+        private void CheckTicket(Ticket ticket)
+        {
+            if (ticket == null || !parkingCars.ContainsKey(ticket))
+            {
+                throw new IllegalTicketException();
+            }
+        }
+
+        private Ticket ParkANewCar(Car car)
+        {
             var ticket = new Ticket();
             parkingCars[ticket] = car;
             Capacity--;
             return ticket;
         }
 
-        public Car Pickup(Ticket ticket)
+        private void CheckDuplicateCars(Car car)
         {
-            if (ticket == null || !parkingCars.ContainsKey(ticket))
+            if (parkingCars.ContainsValue(car))
             {
-                throw new IllegalTicketException();
+                throw new DuplicateCarException();
             }
+        }
 
-            Capacity++;
-            var pickedCar = parkingCars[ticket];
-            parkingCars.Remove(ticket);
-            return pickedCar;
+        private void CheckCapacity()
+        {
+            if (Capacity <= 0)
+            {
+                throw new NoAvailablePositionException();
+            }
         }
     }
 }
