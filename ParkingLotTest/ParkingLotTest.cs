@@ -28,31 +28,31 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Should_pickup_a_car_successfully_when_pickup_given_an_available_ticket()
+        public void Should_fetch_a_car_successfully_when_fetch_given_an_available_ticket()
         {
             var parkingLot = new ParkingLot.ParkingLot(1);
             var car = new Car("江AB1234");
             var ticket = parkingLot.Park(car);
 
-            var pickedCar = parkingLot.Pickup(ticket);
+            var fetchedCar = parkingLot.Fetch(ticket);
 
-            Assert.Equal("江AB1234", pickedCar.PlateNumber);
+            Assert.Equal("江AB1234", fetchedCar.PlateNumber);
         }
 
         [Fact]
-        public void Should_parking_capacity_plus_one_when_pickup_a_car_from_the_parking_lot()
+        public void Should_parking_capacity_plus_one_when_fetch_a_car_from_the_parking_lot()
         {
             var parkingLot = new ParkingLot.ParkingLot(1);
             var car = new Car("江AB1234");
             var ticket = parkingLot.Park(car);
 
-            parkingLot.Pickup(ticket);
+            parkingLot.Fetch(ticket);
 
             Assert.Equal(1, parkingLot.Capacity);
         }
 
         [Fact]
-        public void Should_pickup_the_correct_car_when_pickup_given_multiple_cars_in_parking_lot()
+        public void Should_fetch_the_correct_car_when_fetch_given_multiple_cars_in_parking_lot()
         {
             var parkingLot = new ParkingLot.ParkingLot(2);
             var carFirst = new Car("江AAAAA");
@@ -60,47 +60,47 @@ namespace ParkingLotTest
             var ticketForCarFirst = parkingLot.Park(carFirst);
             parkingLot.Park(carSecond);
 
-            var pickedCar = parkingLot.Pickup(ticketForCarFirst);
+            var fetchedCar = parkingLot.Fetch(ticketForCarFirst);
 
-            Assert.Equal(carFirst, pickedCar);
+            Assert.Equal(carFirst, fetchedCar);
         }
 
         [Fact]
-        public void Should_throw_IllegalTicketException_when_pickup_given_wrong_ticket()
+        public void Should_throw_IllegalTicketException_when_fetch_given_wrong_ticket()
         {
             var parkingLot = new ParkingLot.ParkingLot(1);
             var car = new Car("江AB1234");
             parkingLot.Park(car);
 
-            void Act() => parkingLot.Pickup(new Ticket());
+            void Act() => parkingLot.Fetch(new Ticket());
 
             Assert.Throws<IllegalTicketException>(Act);
         }
 
         [Fact]
-        public void Should_throw_IllegalTicketException_when_pickup_given_used_ticket()
+        public void Should_throw_IllegalTicketException_when_fetch_given_used_ticket()
         {
             var parkingLot = new ParkingLot.ParkingLot(1);
             var car = new Car("江AB1234");
             var ticket = parkingLot.Park(car);
-            parkingLot.Pickup(ticket);
+            parkingLot.Fetch(ticket);
 
-            void PickupCarWithUsedTicket() => parkingLot.Pickup(ticket);
+            void FetchCarWithUsedTicket() => parkingLot.Fetch(ticket);
 
-            var illegalTicketException = Assert.Throws<IllegalTicketException>(PickupCarWithUsedTicket);
+            var illegalTicketException = Assert.Throws<IllegalTicketException>(FetchCarWithUsedTicket);
             Assert.Equal("Unrecognized parking ticket.", illegalTicketException.Message);
         }
 
         [Fact]
-        public void Should_throw_IllegalTicketException_when_pickup_given_no_ticket()
+        public void Should_throw_IllegalTicketException_when_fetch_given_no_ticket()
         {
             var parkingLot = new ParkingLot.ParkingLot(1);
             var car = new Car("江AB1234");
             parkingLot.Park(car);
 
-            void PickupCarWithoutTicket() => parkingLot.Pickup(null);
+            void FetchCarWithoutTicket() => parkingLot.Fetch(null);
 
-            var illegalTicketException = Assert.Throws<IllegalTicketException>(PickupCarWithoutTicket);
+            var illegalTicketException = Assert.Throws<IllegalTicketException>(FetchCarWithoutTicket);
             Assert.Equal("Please provide your parking ticket.", illegalTicketException.Message);
         }
 

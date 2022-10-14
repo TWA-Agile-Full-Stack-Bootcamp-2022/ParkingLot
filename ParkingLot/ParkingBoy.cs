@@ -30,7 +30,7 @@ namespace ParkingLot
                 throw new IllegalTicketException("Unrecognized parking ticket.");
             }
 
-            return parkingLot.Pickup(ticket);
+            return parkingLot.Fetch(ticket);
         }
     }
 }

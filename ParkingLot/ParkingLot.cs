@@ -23,11 +23,11 @@ namespace ParkingLot
             return ParkANewCar(car);
         }
 
-        public Car Pickup(Ticket ticket)
+        public Car Fetch(Ticket ticket)
         {
             CheckTicket(ticket);
 
-            return PickupCarByTicket(ticket);
+            return FetchCarByTicket(ticket);
         }
 
         public decimal AvailableRate()
@@ -41,12 +41,12 @@ namespace ParkingLot
             return parkingCars.ContainsKey(ticket);
         }
 
-        private Car PickupCarByTicket(Ticket ticket)
+        private Car FetchCarByTicket(Ticket ticket)
         {
             Capacity++;
-            var pickedCar = parkingCars[ticket];
+            var fetchedCar = parkingCars[ticket];
             parkingCars.Remove(ticket);
-            return pickedCar;
+            return fetchedCar;
         }
 
         private void CheckTicket(Ticket ticket)
