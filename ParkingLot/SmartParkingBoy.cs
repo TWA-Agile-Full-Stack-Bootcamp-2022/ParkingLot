@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace ParkingLot
 {
-    public class ParkingBoy
+    public class SmartParkingBoy
     {
         private List<ParkingLot> managedParkingLots = new List<ParkingLot>();
 
@@ -14,12 +14,10 @@ namespace ParkingLot
 
         public Ticket Park(Car car)
         {
-            foreach (var parkingLot in managedParkingLots.Where(t => t.Capacity > 0))
-            {
-                return parkingLot.Park(car);
-            }
-
-            throw new NoAvailablePositionException("Not enough position.");
+            var maxCapacity = managedParkingLots.Max(parkingLot => parkingLot.Capacity);
+            var maxCapacityParkingLot =
+                managedParkingLots.First(parkingLot => parkingLot.Capacity == maxCapacity);
+            return maxCapacityParkingLot.Park(car);
         }
     }
 }

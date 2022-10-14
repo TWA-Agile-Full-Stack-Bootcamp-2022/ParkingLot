@@ -37,5 +37,22 @@ namespace ParkingLotTest
             Assert.Equal(0, firstParkingLot.Capacity);
             Assert.Equal(1, secondParkingLot.Capacity);
         }
+
+        [Fact]
+        public void
+            Should_park_to_the_second_parking_lot_given_smart_parking_boy_park_given_the_second_parking_lot_have_more_positions()
+        {
+            var firstParkingLot = new ParkingLot.ParkingLot(1);
+            var secondParkingLot = new ParkingLot.ParkingLot(2);
+            var parkingBoy = new SmartParkingBoy();
+            parkingBoy.AddManagedParkingLot(firstParkingLot);
+            parkingBoy.AddManagedParkingLot(secondParkingLot);
+
+            var ticket = parkingBoy.Park(new Car("江AB1234"));
+
+            Assert.NotEmpty(ticket.TicketNo);
+            Assert.Equal(1, firstParkingLot.Capacity);
+            Assert.Equal(1, secondParkingLot.Capacity);
+        }
     }
 }
