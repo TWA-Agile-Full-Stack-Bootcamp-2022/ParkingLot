@@ -24,7 +24,7 @@ namespace ParkingLot
 
         public Car Pickup(Ticket ticket)
         {
-            if (!parkingCars.ContainsKey(ticket))
+            if (ticket == null || !parkingCars.ContainsKey(ticket))
             {
                 throw new IllegalTicketException();
             }
