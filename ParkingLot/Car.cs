@@ -12,7 +12,7 @@ namespace ParkingLot
         public override bool Equals(object obj)
         {
             var car = obj as Car;
-            return car != null && PlateNumber.Equals(car.PlateNumber);
+            return car != null && Equals(car);
         }
 
         public override int GetHashCode()
