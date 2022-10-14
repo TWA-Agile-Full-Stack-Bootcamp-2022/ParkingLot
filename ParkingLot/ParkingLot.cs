@@ -17,6 +17,7 @@ namespace ParkingLot
 
         public Car Pickup(Ticket ticket)
         {
+            Capacity++;
             return new Car("江AB1234");
         }
     }

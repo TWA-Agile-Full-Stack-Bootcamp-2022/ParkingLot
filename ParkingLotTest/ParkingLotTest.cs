@@ -38,5 +38,17 @@ namespace ParkingLotTest
 
             Assert.Equal("江AB1234", pickedCar.PlateNumber);
         }
+
+        [Fact]
+        public void Should_parking_capacity_plus_one_when_pickup_a_car_from_the_parking_lot()
+        {
+            var parkingLot = new ParkingLot.ParkingLot(1);
+            var car = new Car("江AB1234");
+            var ticket = parkingLot.Park(car);
+
+            parkingLot.Pickup(ticket);
+
+            Assert.Equal(1, parkingLot.Capacity);
+        }
     }
 }
