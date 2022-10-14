@@ -30,6 +30,12 @@ namespace ParkingLot
             return PickupCarByTicket(ticket);
         }
 
+        public decimal AvailableRate()
+        {
+            var allPositionsCount = parkingCars.Count + Capacity;
+            return allPositionsCount == 0 ? 0 : Capacity / (decimal)allPositionsCount;
+        }
+
         private Car PickupCarByTicket(Ticket ticket)
         {
             Capacity++;

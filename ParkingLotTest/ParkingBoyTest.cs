@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using ParkingLot;
 using Xunit;
@@ -53,6 +54,34 @@ namespace ParkingLotTest
             Assert.NotEmpty(ticket.TicketNo);
             Assert.Equal(1, firstParkingLot.Capacity);
             Assert.Equal(1, secondParkingLot.Capacity);
+        }
+
+        [Fact]
+        public void
+            Should_park_to_the_second_parking_lot_given_super_smart_parking_boy_park_given_the_second_parking_lot_have_larger_available_position_rate()
+        {
+            var parkingLotWithAvailableRate80Percent = GivenParkingLot(20, 4);
+            var parkingLotWithAvailableRate90Percent = GivenParkingLot(10, 1);
+            var parkingBoy = new SuperSmartParkingBoy();
+            parkingBoy.AddManagedParkingLot(parkingLotWithAvailableRate80Percent);
+            parkingBoy.AddManagedParkingLot(parkingLotWithAvailableRate90Percent);
+
+            var ticket = parkingBoy.Park(new Car("江AB1234"));
+
+            Assert.NotEmpty(ticket.TicketNo);
+            Assert.Equal(16, parkingLotWithAvailableRate80Percent.Capacity);
+            Assert.Equal(8, parkingLotWithAvailableRate90Percent.Capacity);
+        }
+
+        private ParkingLot.ParkingLot GivenParkingLot(int capacity, int parkedCount)
+        {
+            var parkingLot = new ParkingLot.ParkingLot(capacity);
+            for (var i = 0; i < parkedCount; i++)
+            {
+                parkingLot.Park(new Car($"江A{new Random().Next(10000, 99999)}"));
+            }
+
+            return parkingLot;
         }
     }
 }
