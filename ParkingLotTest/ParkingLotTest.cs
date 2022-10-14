@@ -87,7 +87,8 @@ namespace ParkingLotTest
 
             void PickupCarWithUsedTicket() => parkingLot.Pickup(ticket);
 
-            Assert.Throws<IllegalTicketException>(PickupCarWithUsedTicket);
+            var illegalTicketException = Assert.Throws<IllegalTicketException>(PickupCarWithUsedTicket);
+            Assert.Equal("Unrecognized parking ticket.", illegalTicketException.Message);
         }
 
         [Fact]
