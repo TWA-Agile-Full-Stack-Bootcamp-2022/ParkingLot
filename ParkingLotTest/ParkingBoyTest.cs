@@ -8,6 +8,16 @@ namespace ParkingLotTest
     public class ParkingBoyTest
     {
         [Fact]
+        public void Should_throw_exception_when_park_given_parking_boy_manage_no_parking_lots()
+        {
+            var parkingBoy = new ParkingBoy();
+
+            void ParkWithoutParkingLotManaged() => parkingBoy.Park(new Car("江AB1234"));
+
+            Assert.Throws<NoParkingLotsManagedException>(ParkWithoutParkingLotManaged);
+        }
+
+        [Fact]
         public void Should_park_to_the_first_parking_lot_given_parking_boy_manage_2_parking_lot_and_both_empty()
         {
             var firstParkingLot = new ParkingLot.ParkingLot(1);

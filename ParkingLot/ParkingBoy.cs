@@ -14,6 +14,11 @@ namespace ParkingLot
 
         public virtual Ticket Park(Car car)
         {
+            if (ManagedParkingLots.Count == 0)
+            {
+                throw new NoParkingLotsManagedException();
+            }
+
             foreach (var parkingLot in ManagedParkingLots.Where(t => t.Capacity > 0))
             {
                 return parkingLot.Park(car);
