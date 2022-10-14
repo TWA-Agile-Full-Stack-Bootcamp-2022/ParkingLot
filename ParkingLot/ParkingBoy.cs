@@ -21,5 +21,16 @@ namespace ParkingLot
 
             throw new NoAvailablePositionException("Not enough position.");
         }
+
+        public Car Fetch(Ticket ticket)
+        {
+            var parkingLot = ManagedParkingLots.First(parkingLot => parkingLot.ContainsTicket(ticket));
+            if (parkingLot == null)
+            {
+                throw new IllegalTicketException("Unrecognized parking ticket.");
+            }
+
+            return parkingLot.Pickup(ticket);
+        }
     }
 }

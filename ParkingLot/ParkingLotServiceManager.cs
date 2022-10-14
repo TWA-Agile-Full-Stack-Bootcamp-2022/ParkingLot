@@ -18,5 +18,10 @@ namespace ParkingLot
         {
             return ManagedParkingBoys.Contains(parkingBoy) ? parkingBoy.Park(car) : null;
         }
+
+        public Car FetchByManagedParkingBoy(ParkingBoy parkingBoy, Ticket ticket)
+        {
+            return ManagedParkingBoys.Contains(parkingBoy) ? parkingBoy.Fetch(ticket) : null;
+        }
     }
 }

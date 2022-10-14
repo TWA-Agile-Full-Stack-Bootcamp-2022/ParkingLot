@@ -36,6 +36,11 @@ namespace ParkingLot
             return allPositionsCount == 0 ? 0 : Capacity / (decimal)allPositionsCount;
         }
 
+        public bool ContainsTicket(Ticket ticket)
+        {
+            return parkingCars.ContainsKey(ticket);
+        }
+
         private Car PickupCarByTicket(Ticket ticket)
         {
             Capacity++;
