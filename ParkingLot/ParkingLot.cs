@@ -40,7 +40,12 @@ namespace ParkingLot
 
         private void CheckTicket(Ticket ticket)
         {
-            if (ticket == null || !parkingCars.ContainsKey(ticket))
+            if (ticket == null)
+            {
+                throw new IllegalTicketException("Please provide your parking ticket.");
+            }
+
+            if (!parkingCars.ContainsKey(ticket))
             {
                 throw new IllegalTicketException("Unrecognized parking ticket.");
             }

@@ -100,7 +100,8 @@ namespace ParkingLotTest
 
             void PickupCarWithoutTicket() => parkingLot.Pickup(null);
 
-            Assert.Throws<IllegalTicketException>(PickupCarWithoutTicket);
+            var illegalTicketException = Assert.Throws<IllegalTicketException>(PickupCarWithoutTicket);
+            Assert.Equal("Please provide your parking ticket.", illegalTicketException.Message);
         }
 
         [Fact]
