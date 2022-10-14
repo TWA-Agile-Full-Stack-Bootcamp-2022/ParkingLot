@@ -112,5 +112,16 @@ namespace ParkingLotTest
 
             Assert.Throws<NoAvailablePositionException>(ParkingNewCarWithNoAvailablePosition);
         }
+
+        [Fact]
+        public void Should_throw_DuplicateCarException_when_parking_given_duplicate_car()
+        {
+            var parkingLot = new ParkingLot.ParkingLot(2);
+            parkingLot.Park(new Car("江AB1234"));
+
+            void ParkingDuplicateCar() => parkingLot.Park(new Car("江AB1234"));
+
+            Assert.Throws<DuplicateCarException>(ParkingDuplicateCar);
+        }
     }
 }

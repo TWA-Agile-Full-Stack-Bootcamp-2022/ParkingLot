@@ -21,6 +21,11 @@ namespace ParkingLot
                 throw new NoAvailablePositionException();
             }
 
+            if (parkingCars.ContainsValue(car))
+            {
+                throw new DuplicateCarException();
+            }
+
             var ticket = new Ticket();
             parkingCars[ticket] = car;
             Capacity--;
