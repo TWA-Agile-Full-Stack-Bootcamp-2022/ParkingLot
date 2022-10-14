@@ -8,7 +8,7 @@ namespace ParkingLot
 
         public ParkingLot(int capacity)
         {
-            Capacity = capacity;
+            Capacity = capacity < 0 ? 0 : capacity;
             parkingCars = new Dictionary<Ticket, Car>();
         }
 

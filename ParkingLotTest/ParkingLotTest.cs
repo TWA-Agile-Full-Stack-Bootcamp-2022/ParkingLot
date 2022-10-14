@@ -6,6 +6,14 @@ namespace ParkingLotTest
     public class ParkingLotTest
     {
         [Fact]
+        public void Should_set_capacity_to_0_when_create_parking_lot_with_capacity_less_than_0()
+        {
+            var parkingLot = new ParkingLot.ParkingLot(-1);
+
+            Assert.Equal(0, parkingLot.Capacity);
+        }
+
+        [Fact]
         public void Should_get_a_ticket_with_TicketNo_when_park_a_car_into_the_parking_lot()
         {
             var parkingLot = new ParkingLot.ParkingLot(1);
