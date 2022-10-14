@@ -50,5 +50,19 @@ namespace ParkingLotTest
 
             Assert.Equal(1, parkingLot.Capacity);
         }
+
+        [Fact]
+        public void Should_pickup_the_correct_car_when_pickup_given_multiple_cars_in_parking_lot()
+        {
+            var parkingLot = new ParkingLot.ParkingLot(2);
+            var carFirst = new Car("江AAAAA");
+            var carSecond = new Car("江BBBBB");
+            var ticketForCarFirst = parkingLot.Park(carFirst);
+            parkingLot.Park(carSecond);
+
+            var pickedCar = parkingLot.Pickup(ticketForCarFirst);
+
+            Assert.Equal(carFirst, pickedCar);
+        }
     }
 }
