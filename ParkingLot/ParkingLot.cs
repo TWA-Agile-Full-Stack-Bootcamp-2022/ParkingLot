@@ -14,5 +14,10 @@ namespace ParkingLot
             Capacity--;
             return new Ticket();
         }
+
+        public Car Pickup(Ticket ticket)
+        {
+            return new Car("江AB1234");
+        }
     }
 }

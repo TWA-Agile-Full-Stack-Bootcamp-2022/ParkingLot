@@ -4,9 +4,9 @@ namespace ParkingLot
     {
         public Car(string plateNumber)
         {
-            PlateNuber = plateNumber;
+            PlateNumber = plateNumber;
         }
 
-        public string PlateNuber { get; set; }
+        public string PlateNumber { get; set; }
     }
 }
