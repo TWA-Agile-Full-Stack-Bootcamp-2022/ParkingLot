@@ -1,3 +1,4 @@
+using System;
 using Xunit;
 using ParkingLot;
 
@@ -63,6 +64,18 @@ namespace ParkingLotTest
             var pickedCar = parkingLot.Pickup(ticketForCarFirst);
 
             Assert.Equal(carFirst, pickedCar);
+        }
+
+        [Fact]
+        public void Should_throw_IllegalTicketException_when_pickup_given_wrong_ticket()
+        {
+            var parkingLot = new ParkingLot.ParkingLot(1);
+            var car = new Car("江AB1234");
+            parkingLot.Park(car);
+
+            void Act() => parkingLot.Pickup(new Ticket());
+
+            Assert.Throws<IllegalTicketException>(Act);
         }
     }
 }

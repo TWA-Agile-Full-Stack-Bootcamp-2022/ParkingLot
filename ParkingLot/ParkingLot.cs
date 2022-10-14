@@ -24,15 +24,15 @@ namespace ParkingLot
 
         public Car Pickup(Ticket ticket)
         {
-            if (parkingCars.ContainsKey(ticket))
+            if (!parkingCars.ContainsKey(ticket))
             {
-                Capacity++;
-                var pickedCar = parkingCars[ticket];
-                parkingCars.Remove(ticket);
-                return pickedCar;
+                throw new IllegalTicketException();
             }
 
-            return new Car("江AB1234");
+            Capacity++;
+            var pickedCar = parkingCars[ticket];
+            parkingCars.Remove(ticket);
+            return pickedCar;
         }
     }
 }
