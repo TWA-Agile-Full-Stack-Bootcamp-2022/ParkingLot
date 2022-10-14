@@ -77,5 +77,18 @@ namespace ParkingLotTest
 
             Assert.Throws<IllegalTicketException>(Act);
         }
+
+        [Fact]
+        public void Should_throw_IllegalTicketException_when_pickup_given_used_ticket()
+        {
+            var parkingLot = new ParkingLot.ParkingLot(1);
+            var car = new Car("江AB1234");
+            var ticket = parkingLot.Park(car);
+            parkingLot.Pickup(ticket);
+
+            void Act() => parkingLot.Pickup(ticket);
+
+            Assert.Throws<IllegalTicketException>(Act);
+        }
     }
 }
