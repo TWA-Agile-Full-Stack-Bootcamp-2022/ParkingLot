@@ -7,6 +7,8 @@ namespace ParkingLot
     {
         public override Ticket Park(Car car)
         {
+            CheckManagedParkingLots();
+
             var maxCapacity = ManagedParkingLots.Max(parkingLot => parkingLot.Capacity);
             var maxCapacityParkingLot =
                 ManagedParkingLots.First(parkingLot => parkingLot.Capacity == maxCapacity);

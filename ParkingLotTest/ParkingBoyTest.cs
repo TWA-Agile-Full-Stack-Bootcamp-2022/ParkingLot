@@ -7,20 +7,26 @@ namespace ParkingLotTest
 {
     public class ParkingBoyTest
     {
-        [Fact]
-        public void Should_throw_exception_when_park_given_parking_boy_manage_no_parking_lots()
+        [Theory]
+        [InlineData(typeof(ParkingBoy))]
+        [InlineData(typeof(SmartParkingBoy))]
+        [InlineData(typeof(SuperSmartParkingBoy))]
+        public void Should_throw_exception_when_park_given_parking_boy_manage_no_parking_lots(Type objectType)
         {
-            var parkingBoy = new ParkingBoy();
+            var parkingBoy = (ParkingBoy)Activator.CreateInstance(objectType);
 
             void ParkWithoutParkingLotManaged() => parkingBoy.Park(new Car("江AB1234"));
 
             Assert.Throws<NoParkingLotsManagedException>(ParkWithoutParkingLotManaged);
         }
 
-        [Fact]
-        public void Should_throw_exception_when_fetch_given_parking_boy_manage_no_parking_lots()
+        [Theory]
+        [InlineData(typeof(ParkingBoy))]
+        [InlineData(typeof(SmartParkingBoy))]
+        [InlineData(typeof(SuperSmartParkingBoy))]
+        public void Should_throw_exception_when_fetch_given_parking_boy_manage_no_parking_lots(Type objectType)
         {
-            var parkingBoy = new ParkingBoy();
+            var parkingBoy = (ParkingBoy)Activator.CreateInstance(objectType);
 
             void ParkWithoutParkingLotManaged() => parkingBoy.Fetch(new Ticket());
 

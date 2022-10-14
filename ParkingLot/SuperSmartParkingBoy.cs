@@ -7,6 +7,8 @@ namespace ParkingLot
     {
         public override Ticket Park(Car car)
         {
+            CheckManagedParkingLots();
+
             var maxAvailableRate = ManagedParkingLots.Max(parkingLot => parkingLot.AvailableRate());
             var maxAvailableRateParkingLot =
                 ManagedParkingLots.First(parkingLot => parkingLot.AvailableRate() == maxAvailableRate);
