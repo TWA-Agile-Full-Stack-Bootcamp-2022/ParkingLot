@@ -77,5 +77,15 @@ namespace ParkingLotTest
             Assert.Equal(car, fetchedCar);
             Assert.Equal(1, parkingLot.Capacity);
         }
+
+        [Fact]
+        public void Should_throw_exception_when_specify_a_parking_boy_not_on_management_list_to_park_a_car()
+        {
+            var parkingLogServiceManager = new ParkingLotServiceManager();
+
+            void ParkingByNotManagedParkingBoy() => parkingLogServiceManager.ParkByManagedParkingBoy(new ParkingBoy(), new Car("江AB1234"));
+
+            Assert.Throws<NotFoundManagedParkingBoyException>(ParkingByNotManagedParkingBoy);
+        }
     }
 }

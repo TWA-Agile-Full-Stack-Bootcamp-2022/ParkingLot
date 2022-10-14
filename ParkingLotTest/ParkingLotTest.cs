@@ -72,9 +72,9 @@ namespace ParkingLotTest
             var car = new Car("江AB1234");
             parkingLot.Park(car);
 
-            void Act() => parkingLot.Fetch(new Ticket());
+            void FetchWithWrongTicket() => parkingLot.Fetch(new Ticket());
 
-            Assert.Throws<IllegalTicketException>(Act);
+            Assert.Throws<IllegalTicketException>(FetchWithWrongTicket);
         }
 
         [Fact]

@@ -16,7 +16,9 @@ namespace ParkingLot
 
         public Ticket ParkByManagedParkingBoy(ParkingBoy parkingBoy, Car car)
         {
-            return ManagedParkingBoys.Contains(parkingBoy) ? parkingBoy.Park(car) : null;
+            return ManagedParkingBoys.Contains(parkingBoy)
+                ? parkingBoy.Park(car)
+                : throw new NotFoundManagedParkingBoyException();
         }
 
         public Car FetchByManagedParkingBoy(ParkingBoy parkingBoy, Ticket ticket)
