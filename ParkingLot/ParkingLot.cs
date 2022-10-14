@@ -11,6 +11,7 @@ namespace ParkingLot
 
         public Ticket Park(Car car)
         {
+            Capacity--;
             return new Ticket();
         }
     }
