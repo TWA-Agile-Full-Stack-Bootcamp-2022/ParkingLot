@@ -101,6 +101,23 @@ namespace ParkingLotTest
         }
 
         [Fact]
+        public void Should_get_error_message_when_specify_a_parking_boy_park_a_car_failed()
+        {
+            var parkingLot = new ParkingLot.ParkingLot(0);
+            var parkingBoy = new ParkingBoy();
+            parkingBoy.AddManagedParkingLot(parkingLot);
+            var parkingLogServiceManager = new ParkingLotServiceManager();
+            parkingLogServiceManager.AddManagedParkingBoy(parkingBoy);
+
+            void ParkByManagedParkingBoyFailed() =>
+                parkingLogServiceManager.ParkByManagedParkingBoy(parkingBoy, new Car("江AB1234"));
+
+            var noAvailablePositionException =
+                Assert.Throws<NoAvailablePositionException>(ParkByManagedParkingBoyFailed);
+            Assert.Equal("Not enough position.", noAvailablePositionException.Message);
+        }
+
+        [Fact]
         public void Should_get_error_message_when_specify_a_parking_boy_fetch_a_car_failed()
         {
             var parkingLot = new ParkingLot.ParkingLot(0);
@@ -109,12 +126,12 @@ namespace ParkingLotTest
             var parkingLogServiceManager = new ParkingLotServiceManager();
             parkingLogServiceManager.AddManagedParkingBoy(parkingBoy);
 
-            void ParkByManagedParkingBoyWithoutPositions() =>
-                parkingLogServiceManager.ParkByManagedParkingBoy(parkingBoy, new Car("江AB1234"));
+            void FetchByManagedParkingBoyFailed() =>
+                parkingLogServiceManager.FetchByManagedParkingBoy(parkingBoy, new Ticket());
 
-            var noAvailablePositionException =
-                Assert.Throws<NoAvailablePositionException>(ParkByManagedParkingBoyWithoutPositions);
-            Assert.Equal("Not enough position.", noAvailablePositionException.Message);
+            var illegalTicketException =
+                Assert.Throws<IllegalTicketException>(FetchByManagedParkingBoyFailed);
+            Assert.Equal("Unrecognized parking ticket.", illegalTicketException.Message);
         }
     }
 }

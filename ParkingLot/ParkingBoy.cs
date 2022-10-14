@@ -24,7 +24,7 @@ namespace ParkingLot
 
         public Car Fetch(Ticket ticket)
         {
-            var parkingLot = ManagedParkingLots.First(parkingLot => parkingLot.ContainsTicket(ticket));
+            var parkingLot = ManagedParkingLots.FirstOrDefault(parkingLot => parkingLot.ContainsTicket(ticket));
             if (parkingLot == null)
             {
                 throw new IllegalTicketException("Unrecognized parking ticket.");
