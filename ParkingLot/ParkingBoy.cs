@@ -14,10 +14,7 @@ namespace ParkingLot
 
         public virtual Ticket Park(Car car)
         {
-            if (ManagedParkingLots.Count == 0)
-            {
-                throw new NoParkingLotsManagedException();
-            }
+            CheckManagedParkingLots();
 
             foreach (var parkingLot in ManagedParkingLots.Where(t => t.Capacity > 0))
             {
@@ -29,6 +26,8 @@ namespace ParkingLot
 
         public Car Fetch(Ticket ticket)
         {
+            CheckManagedParkingLots();
+
             var parkingLot = ManagedParkingLots.FirstOrDefault(parkingLot => parkingLot.ContainsTicket(ticket));
             if (parkingLot == null)
             {
@@ -36,6 +35,14 @@ namespace ParkingLot
             }
 
             return parkingLot.Fetch(ticket);
+        }
+
+        protected void CheckManagedParkingLots()
+        {
+            if (ManagedParkingLots.Count == 0)
+            {
+                throw new NoParkingLotsManagedException();
+            }
         }
     }
 }
