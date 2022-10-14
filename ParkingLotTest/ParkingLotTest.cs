@@ -1,4 +1,3 @@
-using System;
 using Xunit;
 using ParkingLot;
 
@@ -86,9 +85,9 @@ namespace ParkingLotTest
             var ticket = parkingLot.Park(car);
             parkingLot.Pickup(ticket);
 
-            void Act() => parkingLot.Pickup(ticket);
+            void PickupCarWithUsedTicket() => parkingLot.Pickup(ticket);
 
-            Assert.Throws<IllegalTicketException>(Act);
+            Assert.Throws<IllegalTicketException>(PickupCarWithUsedTicket);
         }
 
         [Fact]
@@ -98,9 +97,20 @@ namespace ParkingLotTest
             var car = new Car("江AB1234");
             parkingLot.Park(car);
 
-            void Act() => parkingLot.Pickup(null);
+            void PickupCarWithoutTicket() => parkingLot.Pickup(null);
 
-            Assert.Throws<IllegalTicketException>(Act);
+            Assert.Throws<IllegalTicketException>(PickupCarWithoutTicket);
+        }
+
+        [Fact]
+        public void Should_throw_NoAvailablePositionException_when_parking_given_no_available_position_left()
+        {
+            var parkingLot = new ParkingLot.ParkingLot(1);
+            parkingLot.Park(new Car("江AB1234"));
+
+            void ParkingNewCarWithNoAvailablePosition() => parkingLot.Park(new Car("江BBBBBB"));
+
+            Assert.Throws<NoAvailablePositionException>(ParkingNewCarWithNoAvailablePosition);
         }
     }
 }

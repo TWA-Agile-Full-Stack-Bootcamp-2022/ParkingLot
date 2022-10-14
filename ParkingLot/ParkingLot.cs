@@ -16,6 +16,11 @@ namespace ParkingLot
 
         public Ticket Park(Car car)
         {
+            if (Capacity <= 0)
+            {
+                throw new NoAvailablePositionException();
+            }
+
             var ticket = new Ticket();
             parkingCars[ticket] = car;
             Capacity--;
