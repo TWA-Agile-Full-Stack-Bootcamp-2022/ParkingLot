@@ -71,7 +71,7 @@ namespace ParkingLot
         {
             if (Capacity <= 0)
             {
-                throw new NoAvailablePositionException();
+                throw new NoAvailablePositionException("Not enough position.");
             }
         }
     }

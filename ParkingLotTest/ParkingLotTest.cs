@@ -112,7 +112,9 @@ namespace ParkingLotTest
 
             void ParkingNewCarWithNoAvailablePosition() => parkingLot.Park(new Car("江BBBBBB"));
 
-            Assert.Throws<NoAvailablePositionException>(ParkingNewCarWithNoAvailablePosition);
+            var noAvailablePositionException =
+                Assert.Throws<NoAvailablePositionException>(ParkingNewCarWithNoAvailablePosition);
+            Assert.Equal("Not enough position.", noAvailablePositionException.Message);
         }
 
         [Fact]
