@@ -13,5 +13,10 @@ namespace ParkingLot
                 ManagedParkingBoys.Add(parkingBoy);
             }
         }
+
+        public Ticket ParkByManagedParkingBoy(ParkingBoy parkingBoy, Car car)
+        {
+            return ManagedParkingBoys.Contains(parkingBoy) ? parkingBoy.Park(car) : null;
+        }
     }
 }
