@@ -1,3 +1,4 @@
+using System.Xml.XPath;
 using ParkingLot;
 using Xunit;
 
@@ -46,6 +47,20 @@ namespace ParkingLotTest
 
             Assert.Equal(car, fetchedCar);
             Assert.Equal(1, parkingLot.Capacity);
+        }
+
+        [Fact]
+        public void Should_park_a_car_like_a_standard_parking_boy_as_a_parking_lot_service_manager()
+        {
+            var parkingLot = new ParkingLot.ParkingLot(1);
+            var parkingLogServiceManager = new ParkingLotServiceManager();
+            parkingLogServiceManager.AddManagedParkingLot(parkingLot);
+            var car = new Car("江AB1234");
+
+            var ticket = parkingLogServiceManager.Park(car);
+
+            Assert.NotEmpty(ticket.TicketNo);
+            Assert.Equal(0, parkingLot.Capacity);
         }
     }
 }

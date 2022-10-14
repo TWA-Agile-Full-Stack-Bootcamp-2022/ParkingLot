@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace ParkingLot
 {
-    public class ParkingLotServiceManager
+    public class ParkingLotServiceManager : ParkingBoy
     {
         public List<ParkingBoy> ManagedParkingBoys { get; } = new List<ParkingBoy>();
 
