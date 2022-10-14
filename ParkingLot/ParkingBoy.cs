@@ -5,16 +5,16 @@ namespace ParkingLot
 {
     public class ParkingBoy
     {
-        private List<ParkingLot> managedParkingLots = new List<ParkingLot>();
+        protected List<ParkingLot> ManagedParkingLots { get; } = new List<ParkingLot>();
 
         public void AddManagedParkingLot(ParkingLot parkingLot)
         {
-            managedParkingLots.Add(parkingLot);
+            ManagedParkingLots.Add(parkingLot);
         }
 
-        public Ticket Park(Car car)
+        public virtual Ticket Park(Car car)
         {
-            foreach (var parkingLot in managedParkingLots.Where(t => t.Capacity > 0))
+            foreach (var parkingLot in ManagedParkingLots.Where(t => t.Capacity > 0))
             {
                 return parkingLot.Park(car);
             }

@@ -3,20 +3,13 @@ using System.Linq;
 
 namespace ParkingLot
 {
-    public class SmartParkingBoy
+    public class SmartParkingBoy : ParkingBoy
     {
-        private List<ParkingLot> managedParkingLots = new List<ParkingLot>();
-
-        public void AddManagedParkingLot(ParkingLot parkingLot)
+        public override Ticket Park(Car car)
         {
-            managedParkingLots.Add(parkingLot);
-        }
-
-        public Ticket Park(Car car)
-        {
-            var maxCapacity = managedParkingLots.Max(parkingLot => parkingLot.Capacity);
+            var maxCapacity = ManagedParkingLots.Max(parkingLot => parkingLot.Capacity);
             var maxCapacityParkingLot =
-                managedParkingLots.First(parkingLot => parkingLot.Capacity == maxCapacity);
+                ManagedParkingLots.First(parkingLot => parkingLot.Capacity == maxCapacity);
             return maxCapacityParkingLot.Park(car);
         }
     }
