@@ -99,5 +99,22 @@ namespace ParkingLotTest
 
             Assert.Throws<NotFoundManagedParkingBoyException>(FetchByNotManagedParkingBoy);
         }
+
+        [Fact]
+        public void Should_get_error_message_when_specify_a_parking_boy_fetch_a_car_failed()
+        {
+            var parkingLot = new ParkingLot.ParkingLot(0);
+            var parkingBoy = new ParkingBoy();
+            parkingBoy.AddManagedParkingLot(parkingLot);
+            var parkingLogServiceManager = new ParkingLotServiceManager();
+            parkingLogServiceManager.AddManagedParkingBoy(parkingBoy);
+
+            void ParkByManagedParkingBoyWithoutPositions() =>
+                parkingLogServiceManager.ParkByManagedParkingBoy(parkingBoy, new Car("江AB1234"));
+
+            var noAvailablePositionException =
+                Assert.Throws<NoAvailablePositionException>(ParkByManagedParkingBoyWithoutPositions);
+            Assert.Equal("Not enough position.", noAvailablePositionException.Message);
+        }
     }
 }
