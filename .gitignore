@@ -7,3 +7,6 @@
 /ParkingLot/obj
 /ParkingLotTest/bin
 /ParkingLotTest/obj
+**/.DS_Store
+*.sln.DotSettings.user
+.idea
