@@ -24,7 +24,9 @@ namespace ParkingLot
                 return null;
             }
 
-            return ticketCarPairs[ticketRecived];
+            Car fetchedCar = ticketCarPairs[ticketRecived];
+            ticketCarPairs.Remove(ticketRecived);
+            return fetchedCar;
         }
 
         public virtual Ticket Park(Car car)
