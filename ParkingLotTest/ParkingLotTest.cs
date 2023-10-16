@@ -92,7 +92,7 @@ namespace ParkingLotTest
             // When
             Action action = () => parkingLot.Fetch(worngTicketNOTinParkingLot);
             // Then
-            Exception exception = Assert.Throws<NoTicketProvidedException>(action);
+            Exception exception = Assert.Throws<UnrecognizedParkingTicketException>(action);
             Assert.Equal("Unrecognized parking ticket.", exception.Message);
         }
 
@@ -112,7 +112,7 @@ namespace ParkingLotTest
             Car fetchedCar = parkingLot.Fetch(givenTicket);
             Action action = () => parkingLot.Fetch(givenTicket);
             // Then
-            Exception exception = Assert.Throws<NoTicketProvidedException>(action);
+            Exception exception = Assert.Throws<UnrecognizedParkingTicketException>(action);
             Assert.Equal("Unrecognized parking ticket.", exception.Message);
         }
 
@@ -136,7 +136,7 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Should_NOT_return_ticket_when_park_given_a_parkinglot_already_parked_10_cars()
+        public void Should_throw_NotEnoughPositionException_when_park_given_a_parkinglot_already_parked_10_cars()
         {
             // Given
             Dictionary<Ticket, Car> ticketCarPairs = new Dictionary<Ticket, Car>();
@@ -147,9 +147,10 @@ namespace ParkingLotTest
 
             // When
             ParkingLot parkingLot = new ParkingLot(ticketCarPairs);
-            Ticket ticket = parkingLot.Park(new Car());
+            Action action = () => parkingLot.Park(new Car());
             // Then
-            Assert.Null(ticket);
+            Exception exception = Assert.Throws<NotEnoughPositionException>(action);
+            Assert.Equal("Not enough position.", exception.Message);
         }
     }
 }

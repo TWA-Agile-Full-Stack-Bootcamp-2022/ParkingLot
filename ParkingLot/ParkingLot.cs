@@ -38,7 +38,7 @@ namespace ParkingLot
         {
             if (ticketCarPairs.Count >= MaxCapacity)
             {
-                return null;
+                throw new NotEnoughPositionException("Not enough position.");
             }
 
             Ticket ticket = new Ticket();
