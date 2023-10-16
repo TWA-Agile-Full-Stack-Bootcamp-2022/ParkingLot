@@ -181,5 +181,33 @@ namespace ParkingLotTest
             // Then
             Assert.False(isFull);
         }
+
+        [Fact]
+        public void Should_return_true_when_verify_hasTicket_given_the_ticket_in_the_parkinglot()
+        {
+            // Given
+            Dictionary<Ticket, Car> ticketCarPairs = new Dictionary<Ticket, Car>();
+            Ticket givenTicket = new Ticket();
+            Car car = new Car();
+            ticketCarPairs.Add(givenTicket, car);
+
+            ParkingLot parkingLot = new ParkingLot(ticketCarPairs);
+            // When
+            bool hasTicket = parkingLot.HasTicket(givenTicket);
+            // Then
+            Assert.True(hasTicket);
+        }
+
+        [Fact]
+        public void Should_return_false_when_verify_hasTicket_given_the_ticket_NOT_in_the_parkinglot()
+        {
+            // Given
+            Dictionary<Ticket, Car> ticketCarPairs = new Dictionary<Ticket, Car>();
+            ParkingLot parkingLot = new ParkingLot(ticketCarPairs);
+            // When
+            bool hasTicket = parkingLot.HasTicket(new Ticket());
+            // Then
+            Assert.False(hasTicket);
+        }
     }
 }

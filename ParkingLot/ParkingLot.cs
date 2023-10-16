@@ -35,6 +35,11 @@ namespace ParkingLot
             return fetchedCar;
         }
 
+        public bool HasTicket(Ticket ticket)
+        {
+            return ticketCarPairs.ContainsKey(ticket);
+        }
+
         public virtual bool IsFull()
         {
             return ticketCarPairs.Count == MaxCapacity;
