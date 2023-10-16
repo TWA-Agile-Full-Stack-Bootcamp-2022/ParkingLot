@@ -89,6 +89,25 @@ namespace ParkingLotTest
             Ticket worngTicketNOTinParkingLot = new Ticket();
             // When
             Car fetchedCar = parkingLot.Fetch(worngTicketNOTinParkingLot);
+            // Then
+            Assert.Null(fetchedCar);
+        }
+
+        [Fact]
+        public void Should_NOT_return_the_car_when_fetch_without_ticket()
+        {
+            // Given
+            Dictionary<Ticket, Car> ticketCarPairs = new Dictionary<Ticket, Car>();
+            Car givenCar = new Car();
+            Ticket givenTicket = new Ticket();
+
+            ticketCarPairs.Add(givenTicket, givenCar);
+
+            ParkingLot parkingLot = new ParkingLot(ticketCarPairs);
+
+            // When
+            Car fetchedCar = parkingLot.Fetch(null);
+            // Then
             Assert.Null(fetchedCar);
         }
     }

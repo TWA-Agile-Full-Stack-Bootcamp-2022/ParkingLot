@@ -18,8 +18,12 @@ namespace ParkingLot
 
         public virtual Car Fetch(Ticket ticketRecived)
         {
-            return ticketCarPairs.ContainsKey(ticketRecived) ?
-                ticketCarPairs[ticketRecived] : null;
+            if (ticketRecived == null || !ticketCarPairs.ContainsKey(ticketRecived))
+            {
+                return null;
+            }
+
+            return ticketCarPairs[ticketRecived];
         }
 
         public virtual Ticket Park(Car car)
