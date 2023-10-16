@@ -16,7 +16,7 @@ namespace ParkingLot
             this.ticketCarPairs = ticketCarPairs;
         }
 
-        public Car Fetch(Ticket ticketRecived)
+        public virtual Car Fetch(Ticket ticketRecived)
         {
             return ticketCarPairs[ticketRecived];
         }
