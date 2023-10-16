@@ -73,5 +73,23 @@ namespace ParkingLotTest
             Assert.Equal(givenCar, fetchedCar);
             Assert.Equal(givenOtherCar, fetchedOtherCar);
         }
+
+        [Fact]
+        public void Should_NOT_return_the_car_when_fetch_by_given_not_existed_ticket()
+        {
+            // Given
+            Dictionary<Ticket, Car> ticketCarPairs = new Dictionary<Ticket, Car>();
+            Car givenCar = new Car();
+            Ticket givenTicket = new Ticket();
+
+            ticketCarPairs.Add(givenTicket, givenCar);
+
+            ParkingLot parkingLot = new ParkingLot(ticketCarPairs);
+
+            Ticket worngTicketNOTinParkingLot = new Ticket();
+            // When
+            Car fetchedCar = parkingLot.Fetch(worngTicketNOTinParkingLot);
+            Assert.Null(fetchedCar);
+        }
     }
 }
