@@ -152,5 +152,34 @@ namespace ParkingLotTest
             Exception exception = Assert.Throws<NotEnoughPositionException>(action);
             Assert.Equal("Not enough position.", exception.Message);
         }
+
+        [Fact]
+        public void Should_return_true_when_verify_isFull_given_no_position_parkinglot()
+        {
+            // Given
+            Dictionary<Ticket, Car> ticketCarPairs = new Dictionary<Ticket, Car>();
+            for (int i = 0; i < ParkingLot.MaxCapacity; i++)
+            {
+                ticketCarPairs.Add(new Ticket(), new Car());
+            }
+
+            ParkingLot parkingLot = new ParkingLot(ticketCarPairs);
+            // When
+            bool isFull = parkingLot.IsFull();
+            // Then
+            Assert.True(isFull);
+        }
+
+        [Fact]
+        public void Should_return_true_when_verify_isFull_given_a_parkinglot_empty()
+        {
+            // Given
+            Dictionary<Ticket, Car> ticketCarPairs = new Dictionary<Ticket, Car>();
+            ParkingLot parkingLot = new ParkingLot(ticketCarPairs);
+            // When
+            bool isFull = parkingLot.IsFull();
+            // Then
+            Assert.False(isFull);
+        }
     }
 }

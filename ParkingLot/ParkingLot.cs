@@ -1,4 +1,5 @@
 ﻿using ParkingLot.Exceptions;
+using System;
 using System.Collections.Generic;
 
 namespace ParkingLot
@@ -34,9 +35,14 @@ namespace ParkingLot
             return fetchedCar;
         }
 
+        public bool IsFull()
+        {
+            return ticketCarPairs.Count == MaxCapacity;
+        }
+
         public virtual Ticket Park(Car car)
         {
-            if (ticketCarPairs.Count >= MaxCapacity)
+            if (IsFull())
             {
                 throw new NotEnoughPositionException("Not enough position.");
             }
