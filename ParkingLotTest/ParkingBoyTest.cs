@@ -2,6 +2,9 @@
 {
     using Moq;
     using ParkingLot;
+    using ParkingLot.Exceptions;
+    using System.Collections.Generic;
+    using System;
     using Xunit;
 
     public class ParkingBoyTest
@@ -37,6 +40,86 @@
             // Then
             Assert.Equal(givenCar, fetchedCar);
             parkingLot.Verify(parkingLot => parkingLot.Fetch(givenTicket), Times.Once());
+        }
+
+        [Fact]
+        public void Should_return_ticket_when_park_given_a_car_and_first_parkinglot_not_full()
+        {
+            // Given
+            // When
+            // Then
+        }
+
+        [Fact]
+        public void Should_return_ticket_when_park_given_a_car_and_first_parkinglog_is_full()
+        {
+            // Given
+            // When
+            // Then
+        }
+
+        [Fact]
+        public void Should_return_NotEnoughPositionException_when_park_given_a_car_and_all_parkinglog_are_full()
+        {
+            // Given
+            // When
+            // Then
+        }
+
+        [Fact]
+        public void Should_recive_different_tickets_when_park_given_multiple_cars()
+        {
+            // Given
+            // When
+            // Then
+        }
+
+        [Fact]
+        public void Should_return_the_right_car_when_fetch_by_given_ticket_in_first_parking_lot()
+        {
+            // Given
+            // When
+            // Then
+        }
+
+        [Fact]
+        public void Should_return_the_right_car_when_fetch_by_given_ticket_in_sequentially_parking_lot()
+        {
+            // Given
+            // When
+            // Then
+        }
+
+        [Fact]
+        public void Should_fetch_the_right_car_when_fetch_given_multiple_cars()
+        {
+            // Given
+            // When
+            // Then
+        }
+
+        [Fact]
+        public void Should_throw_UnrecognizedParkingTicketException_when_fetch_by_given_not_existed_ticket()
+        {
+            // Given
+            // When
+            // Then
+        }
+
+        [Fact]
+        public void Should_throw_UnrecognizedParkingTicketException_when_fetch_given_a_used_ticket()
+        {
+            // Given
+            // When
+            // Then
+        }
+
+        [Fact]
+        public void Should_throw_NoTicketProvidedException_when_fetch_without_ticket()
+        {
+            // Given
+            // When
+            // Then
         }
     }
 }
