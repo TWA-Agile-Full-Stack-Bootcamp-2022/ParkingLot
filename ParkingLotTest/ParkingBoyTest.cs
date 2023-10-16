@@ -6,6 +6,7 @@
     using System;
     using System.Collections.Generic;
     using Xunit;
+    using static System.Collections.Specialized.BitVector32;
 
     public class ParkingBoyTest
     {
@@ -37,7 +38,7 @@
             ParkingLot anotherParkingLot = new ParkingLot();
 
             List<ParkingLot> managedParkingLots = new List<ParkingLot>();
-            for (int i = 0; i < ParkingLot.MaxCapacity; i++) 
+            for (int i = 0; i < ParkingLot.MaxCapacity; i++)
             {
                 parkingLot.Park(new Car());
             }
@@ -81,8 +82,22 @@
         public void Should_return_NotEnoughPositionException_when_park_given_a_car_and_all_parkinglog_are_full()
         {
             // Given
+            var parkingLot = new Mock<ParkingLot>();
+            var anotherParkingLot = new Mock<ParkingLot>();
+            parkingLot.Setup(parkinglot => parkinglot.IsFull()).Returns(true);
+            anotherParkingLot.Setup(parkinglot => parkinglot.IsFull()).Returns(true);
+
+            List<ParkingLot> managedParkingLots = new List<ParkingLot>();
+            managedParkingLots.Add(parkingLot.Object);
+            managedParkingLots.Add(anotherParkingLot.Object);
+            ParkingBoy parkingBoy = new ParkingBoy(managedParkingLots);
+
             // When
+            Action action = () => parkingBoy.Park(new Car());
+
             // Then
+            Exception exception = Assert.Throws<NotEnoughPositionException>(action);
+            Assert.Equal("Not enough position.", exception.Message);
         }
 
         [Fact]

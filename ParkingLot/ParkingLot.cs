@@ -22,12 +22,12 @@ namespace ParkingLot
         {
             if (ticketRecived == null)
             {
-                throw new NoTicketProvidedException("Please provide your parking ticket.");
+                throw new NoTicketProvidedException();
             }
 
             if (!ticketCarPairs.ContainsKey(ticketRecived))
             {
-                throw new UnrecognizedParkingTicketException("Unrecognized parking ticket.");
+                throw new UnrecognizedParkingTicketException();
             }
 
             Car fetchedCar = ticketCarPairs[ticketRecived];
@@ -35,7 +35,7 @@ namespace ParkingLot
             return fetchedCar;
         }
 
-        public bool IsFull()
+        public virtual bool IsFull()
         {
             return ticketCarPairs.Count == MaxCapacity;
         }
@@ -44,7 +44,7 @@ namespace ParkingLot
         {
             if (IsFull())
             {
-                throw new NotEnoughPositionException("Not enough position.");
+                throw new NotEnoughPositionException();
             }
 
             Ticket ticket = new Ticket();

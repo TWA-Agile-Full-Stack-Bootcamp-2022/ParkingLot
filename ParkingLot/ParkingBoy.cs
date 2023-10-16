@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ParkingLot.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
@@ -24,9 +25,9 @@ namespace ParkingLot
             ParkingLot availableParkingLot = parkingLots.Find(parkingLot => !parkingLot.IsFull());
             if (availableParkingLot == null)
             {
-                // TODO
-                return null;
+                throw new NotEnoughPositionException();
             }
+
             return availableParkingLot.Park(car);
         }
     }
