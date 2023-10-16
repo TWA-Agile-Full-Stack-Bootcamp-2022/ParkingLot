@@ -19,7 +19,12 @@ namespace ParkingLot
 
         public virtual Car Fetch(Ticket ticketRecived)
         {
-            if (ticketRecived == null || !ticketCarPairs.ContainsKey(ticketRecived))
+            if (ticketRecived == null)
+            {
+                throw new NoTicketProvidedException("Please provide your parking ticket.");
+            }
+
+            if (!ticketCarPairs.ContainsKey(ticketRecived))
             {
                 throw new UnrecognizedParkingTicketException("Unrecognized parking ticket.");
             }
