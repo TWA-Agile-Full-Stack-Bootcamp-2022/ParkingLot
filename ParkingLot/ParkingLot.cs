@@ -21,7 +21,7 @@ namespace ParkingLot
             return ticketCarPairs[ticketRecived];
         }
 
-        public Ticket Park(Car car)
+        public virtual Ticket Park(Car car)
         {
             Ticket ticket = new Ticket();
             ticketCarPairs.Add(ticket, car);
