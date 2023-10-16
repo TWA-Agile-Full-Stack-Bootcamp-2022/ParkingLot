@@ -181,16 +181,44 @@
         public void Should_throw_UnrecognizedParkingTicketException_when_fetch_by_given_not_existed_ticket()
         {
             // Given
+            Dictionary<Ticket, Car> ticketCarPairs = new Dictionary<Ticket, Car>();
+            Car givenCar = new Car();
+            Ticket givenTicket = new Ticket();
+            ticketCarPairs.Add(givenTicket, givenCar);
+            ParkingLot parkingLot = new ParkingLot(ticketCarPairs);
+            ParkingLot anotherParkingLot = new ParkingLot();
+
+            List<ParkingLot> managedParkingLots = new List<ParkingLot>();
+            managedParkingLots.Add(parkingLot);
+            managedParkingLots.Add(anotherParkingLot);
+            ParkingBoy parkingBoy = new ParkingBoy(managedParkingLots);
+
             // When
+            Car theCarFetchedBefore = parkingBoy.Fetch(givenTicket);
+            Action action = () => parkingBoy.Fetch(new Ticket());
             // Then
+            Assert.NotNull(theCarFetchedBefore);
+            Exception exception = Assert.Throws<UnrecognizedParkingTicketException>(action);
+            Assert.Equal("Unrecognized parking ticket.", exception.Message);
         }
 
         [Fact]
         public void Should_throw_UnrecognizedParkingTicketException_when_fetch_given_a_used_ticket()
         {
             // Given
+            ParkingLot parkingLot = new ParkingLot();
+            ParkingLot anotherParkingLot = new ParkingLot();
+
+            List<ParkingLot> managedParkingLots = new List<ParkingLot>();
+            managedParkingLots.Add(parkingLot);
+            managedParkingLots.Add(anotherParkingLot);
+            ParkingBoy parkingBoy = new ParkingBoy(managedParkingLots);
+
             // When
+            Action action = () => parkingBoy.Fetch(new Ticket());
             // Then
+            Exception exception = Assert.Throws<UnrecognizedParkingTicketException>(action);
+            Assert.Equal("Unrecognized parking ticket.", exception.Message);
         }
 
         [Fact]

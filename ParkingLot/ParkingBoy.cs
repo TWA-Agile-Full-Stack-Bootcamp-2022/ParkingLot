@@ -20,8 +20,7 @@ namespace ParkingLot
             ParkingLot parkingLotForTicket = parkingLots.Find(parkinglot => parkinglot.HasTicket(ticket));
             if (parkingLotForTicket == null)
             {
-                // TODO
-                return null;
+                throw new UnrecognizedParkingTicketException();
             }
 
             return parkingLotForTicket.Fetch(ticket);
