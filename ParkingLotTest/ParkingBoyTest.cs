@@ -104,24 +104,77 @@
         public void Should_return_the_right_car_when_fetch_by_given_ticket_in_first_parking_lot()
         {
             // Given
+            Car givenCar = new Car();
+            Ticket givenTicket = new Ticket();
+            Dictionary<Ticket, Car> ticketCarPairs = new Dictionary<Ticket, Car>();
+            ticketCarPairs.Add(givenTicket, givenCar);
+            ParkingLot parkingLot = new ParkingLot(ticketCarPairs);
+            ParkingLot anotherParkingLot = new ParkingLot();
+
+            List<ParkingLot> managedParkingLots = new List<ParkingLot>();
+            managedParkingLots.Add(parkingLot);
+            managedParkingLots.Add(anotherParkingLot);
+            ParkingBoy parkingBoy = new ParkingBoy(managedParkingLots);
+
             // When
+            Car fetchedCar = parkingBoy.Fetch(givenTicket);
             // Then
+            Assert.NotNull(fetchedCar);
+            Assert.Equal(givenCar, fetchedCar);
         }
 
         [Fact]
         public void Should_return_the_right_car_when_fetch_by_given_ticket_in_sequentially_parking_lot()
         {
             // Given
+            Car givenCar = new Car();
+            Ticket givenTicket = new Ticket();
+            Dictionary<Ticket, Car> ticketCarPairs = new Dictionary<Ticket, Car>();
+            ticketCarPairs.Add(givenTicket, givenCar);
+            ParkingLot parkingLot = new ParkingLot();
+            ParkingLot anotherParkingLot = new ParkingLot(ticketCarPairs);
+
+            List<ParkingLot> managedParkingLots = new List<ParkingLot>();
+            managedParkingLots.Add(parkingLot);
+            managedParkingLots.Add(anotherParkingLot);
+            ParkingBoy parkingBoy = new ParkingBoy(managedParkingLots);
+
             // When
+            Car fetchedCar = parkingBoy.Fetch(givenTicket);
             // Then
+            Assert.NotNull(fetchedCar);
+            Assert.Equal(givenCar, fetchedCar);
         }
 
         [Fact]
         public void Should_fetch_the_right_car_when_fetch_given_multiple_cars()
         {
             // Given
+            Dictionary<Ticket, Car> ticketCarPairs = new Dictionary<Ticket, Car>();
+            Car firstCar = new Car();
+            Ticket firstTicket = new Ticket();
+            ticketCarPairs.Add(firstTicket, firstCar);
+            ParkingLot parkingLot = new ParkingLot(ticketCarPairs);
+
+            Dictionary<Ticket, Car> anotherticketCarPairs = new Dictionary<Ticket, Car>();
+            Car secondCar = new Car();
+            Ticket secondTicket = new Ticket();
+            anotherticketCarPairs.Add(secondTicket, secondCar);
+            ParkingLot anotherParkingLot = new ParkingLot(anotherticketCarPairs);
+
+            List<ParkingLot> managedParkingLots = new List<ParkingLot>();
+            managedParkingLots.Add(parkingLot);
+            managedParkingLots.Add(anotherParkingLot);
+            ParkingBoy parkingBoy = new ParkingBoy(managedParkingLots);
+
             // When
+            Car firstFetchedCar = parkingBoy.Fetch(firstTicket);
+            Car secondFetchedCar = parkingBoy.Fetch(secondTicket);
             // Then
+            Assert.NotNull(firstFetchedCar);
+            Assert.NotNull(secondFetchedCar);
+            Assert.Equal(firstCar, firstFetchedCar);
+            Assert.Equal(secondCar, secondFetchedCar);
         }
 
         [Fact]

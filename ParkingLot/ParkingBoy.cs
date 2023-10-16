@@ -15,9 +15,16 @@ namespace ParkingLot
             this.parkingLots = parkingLots;
         }
 
-        public Car Fetch(Ticket givenTicket)
+        public Car Fetch(Ticket ticket)
         {
-            return null;
+            ParkingLot parkingLotForTicket = parkingLots.Find(parkinglot => parkinglot.HasTicket(ticket));
+            if (parkingLotForTicket == null)
+            {
+                // TODO
+                return null;
+            }
+
+            return parkingLotForTicket.Fetch(ticket);
         }
 
         public Ticket Park(Car car)
