@@ -1,4 +1,4 @@
-﻿using System;
+﻿using ParkingLot.Exceptions;
 using System.Collections.Generic;
 
 namespace ParkingLot
@@ -21,7 +21,7 @@ namespace ParkingLot
         {
             if (ticketRecived == null || !ticketCarPairs.ContainsKey(ticketRecived))
             {
-                return null;
+                throw new UnrecognizedParkingTicketException("Unrecognized parking ticket.");
             }
 
             Car fetchedCar = ticketCarPairs[ticketRecived];

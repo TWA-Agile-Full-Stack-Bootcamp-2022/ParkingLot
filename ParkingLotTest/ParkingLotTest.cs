@@ -1,6 +1,8 @@
 namespace ParkingLotTest
 {
     using ParkingLot;
+    using ParkingLot.Exceptions;
+    using System;
     using System.Collections.Generic;
     using Xunit;
 
@@ -75,7 +77,7 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Should_NOT_return_the_car_when_fetch_by_given_not_existed_ticket()
+        public void Should_throw_UnrecognizedParkingTicketException_when_fetch_by_given_not_existed_ticket()
         {
             // Given
             Dictionary<Ticket, Car> ticketCarPairs = new Dictionary<Ticket, Car>();
@@ -88,9 +90,30 @@ namespace ParkingLotTest
 
             Ticket worngTicketNOTinParkingLot = new Ticket();
             // When
-            Car fetchedCar = parkingLot.Fetch(worngTicketNOTinParkingLot);
+            Action action = () => parkingLot.Fetch(worngTicketNOTinParkingLot);
             // Then
-            Assert.Null(fetchedCar);
+            Exception exception = Assert.Throws<UnrecognizedParkingTicketException>(action);
+            Assert.Equal("Unrecognized parking ticket.", exception.Message);
+        }
+
+        [Fact]
+        public void Should_throw_UnrecognizedParkingTicketException_when_fetch_given_a_used_ticket()
+        {
+            // Given
+            Dictionary<Ticket, Car> ticketCarPairs = new Dictionary<Ticket, Car>();
+            Car givenCar = new Car();
+            Ticket givenTicket = new Ticket();
+
+            ticketCarPairs.Add(givenTicket, givenCar);
+
+            ParkingLot parkingLot = new ParkingLot(ticketCarPairs);
+
+            // When
+            Car fetchedCar = parkingLot.Fetch(givenTicket);
+            Action action = () => parkingLot.Fetch(givenTicket);
+            // Then
+            Exception exception = Assert.Throws<UnrecognizedParkingTicketException>(action);
+            Assert.Equal("Unrecognized parking ticket.", exception.Message);
         }
 
         [Fact]
@@ -111,25 +134,6 @@ namespace ParkingLotTest
             Assert.Null(fetchedCar);
         }
 
-        [Fact]
-        public void Should_NOT_return_the_car_when_fetch_given_a_used_ticket()
-        {
-            // Given
-            Dictionary<Ticket, Car> ticketCarPairs = new Dictionary<Ticket, Car>();
-            Car givenCar = new Car();
-            Ticket givenTicket = new Ticket();
-
-            ticketCarPairs.Add(givenTicket, givenCar);
-
-            ParkingLot parkingLot = new ParkingLot(ticketCarPairs);
-
-            // When
-            Car fetchedCar = parkingLot.Fetch(givenTicket);
-            Car fetchedCarOtherTime = parkingLot.Fetch(givenTicket);
-            // Then
-            Assert.NotNull(fetchedCar);
-            Assert.Null(fetchedCarOtherTime);
-        }
 
         [Fact]
         public void Should_NOT_return_ticket_when_park_given_a_parkinglot_already_parked_10_cars()
