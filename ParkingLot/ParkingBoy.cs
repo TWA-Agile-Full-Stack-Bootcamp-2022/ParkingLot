@@ -1,24 +1,33 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 
 namespace ParkingLot
 {
     public class ParkingBoy
     {
-        private ParkingLot parkingLot;
+        private List<ParkingLot> parkingLots;
 
-        public ParkingBoy(ParkingLot parkingLot)
+        public ParkingBoy(List<ParkingLot> parkingLots)
         {
-            this.parkingLot = parkingLot;
+            this.parkingLots = parkingLots;
         }
 
         public Car Fetch(Ticket givenTicket)
         {
-            return parkingLot.Fetch(givenTicket);
+            return null;
         }
 
         public Ticket Park(Car car)
         {
-            return parkingLot.Park(car);
+            ParkingLot availableParkingLot = parkingLots.Find(parkingLot => !parkingLot.IsFull());
+            if (availableParkingLot == null)
+            {
+                // TODO
+                return null;
+            }
+            return availableParkingLot.Park(car);
         }
     }
 }

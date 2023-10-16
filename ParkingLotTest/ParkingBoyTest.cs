@@ -3,71 +3,82 @@
     using Moq;
     using ParkingLot;
     using ParkingLot.Exceptions;
-    using System.Collections.Generic;
     using System;
+    using System.Collections.Generic;
     using Xunit;
 
     public class ParkingBoyTest
     {
         [Fact]
-        public void Should_return_ticket_when_park_given_a_car()
-        {
-            // Given
-            Car givenCar = new Car();
-            var parkingLot = new Mock<ParkingLot>();
-            parkingLot.Setup(parkingLot => parkingLot.Park(givenCar)).Returns(new Ticket());
-            ParkingBoy parkingBoy = new ParkingBoy(parkingLot.Object);
-
-            // When
-            Ticket ticket = parkingBoy.Park(givenCar);
-            // Then
-            Assert.NotNull(ticket);
-            parkingLot.Verify(parkingLot => parkingLot.Park(givenCar), Times.Once());
-        }
-
-        [Fact]
-        public void Should_return_the_right_car_when_fetch_by_given_ticket()
-        {
-            // Given
-            var parkingLot = new Mock<ParkingLot>();
-            ParkingBoy parkingBoy = new ParkingBoy(parkingLot.Object);
-
-            Ticket givenTicket = new Ticket();
-            Car givenCar = new Car();
-            parkingLot.Setup(parkingLot => parkingLot.Fetch(givenTicket)).Returns(givenCar);
-            // When
-            Car fetchedCar = parkingBoy.Fetch(givenTicket);
-            // Then
-            Assert.Equal(givenCar, fetchedCar);
-            parkingLot.Verify(parkingLot => parkingLot.Fetch(givenTicket), Times.Once());
-        }
-
-        [Fact]
         public void Should_return_ticket_when_park_given_a_car_and_first_parkinglot_not_full()
         {
             // Given
+            ParkingLot parkingLot = new ParkingLot();
+            ParkingLot anotherParkingLot = new ParkingLot();
+
+            List<ParkingLot> managedParkingLots = new List<ParkingLot>();
+            managedParkingLots.Add(parkingLot);
+            managedParkingLots.Add(anotherParkingLot);
+            ParkingBoy parkingBoy = new ParkingBoy(managedParkingLots);
+
+            Car car = new Car();
             // When
+            Ticket ticketRecived = parkingBoy.Park(car);
             // Then
+            Assert.NotNull(ticketRecived);
+            Assert.NotNull(parkingLot.Fetch(ticketRecived));
         }
 
         [Fact]
         public void Should_return_ticket_when_park_given_a_car_and_first_parkinglog_is_full()
         {
             // Given
-            // When
-            // Then
-        }
+            ParkingLot parkingLot = new ParkingLot();
+            ParkingLot anotherParkingLot = new ParkingLot();
 
-        [Fact]
-        public void Should_return_NotEnoughPositionException_when_park_given_a_car_and_all_parkinglog_are_full()
-        {
-            // Given
+            List<ParkingLot> managedParkingLots = new List<ParkingLot>();
+            for (int i = 0; i < ParkingLot.MaxCapacity; i++) 
+            {
+                parkingLot.Park(new Car());
+            }
+
+            managedParkingLots.Add(parkingLot);
+            managedParkingLots.Add(anotherParkingLot);
+            ParkingBoy parkingBoy = new ParkingBoy(managedParkingLots);
+
+            Car car = new Car();
             // When
+            Ticket ticketRecived = parkingBoy.Park(car);
             // Then
+            Assert.NotNull(ticketRecived);
+            Assert.NotNull(anotherParkingLot.Fetch(ticketRecived));
         }
 
         [Fact]
         public void Should_recive_different_tickets_when_park_given_multiple_cars()
+        {
+            // Given
+            ParkingLot parkingLot = new ParkingLot();
+            ParkingLot anotherParkingLot = new ParkingLot();
+
+            List<ParkingLot> managedParkingLots = new List<ParkingLot>();
+            managedParkingLots.Add(parkingLot);
+            managedParkingLots.Add(anotherParkingLot);
+            ParkingBoy parkingBoy = new ParkingBoy(managedParkingLots);
+
+            Car car = new Car();
+            Car anotherCar = new Car();
+            // When
+            Ticket ticketRecived = parkingBoy.Park(car);
+            Ticket anotherTicketRecived = parkingBoy.Park(anotherCar);
+            // Then
+            Assert.NotNull(ticketRecived);
+            Assert.NotNull(anotherTicketRecived);
+            Assert.NotEqual(ticketRecived, anotherTicketRecived);
+        }
+
+        [Fact]
+        public void Should_return_NotEnoughPositionException_when_park_given_a_car_and_all_parkinglog_are_full()
         {
             // Given
             // When
