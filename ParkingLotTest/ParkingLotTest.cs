@@ -33,5 +33,21 @@ namespace ParkingLotTest
             // Then
             Assert.Equal(givenCar, fetchedCar);
         }
+
+        [Fact]
+        public void Should_recive_different_tickets_when_par_given_multiple_cars()
+        {
+            // Given
+            ParkingLot parkingLot = new ParkingLot();
+            Car car = new Car();
+            Car otherCar = new Car();
+            // When
+            Ticket ticketRecived = parkingLot.Park(car);
+            Ticket ticketRecivedOther = parkingLot.Park(otherCar);
+            // Then
+            Assert.NotNull(ticketRecived);
+            Assert.NotNull(ticketRecivedOther);
+            Assert.NotEqual(ticketRecived, ticketRecivedOther);
+        }
     }
 }
