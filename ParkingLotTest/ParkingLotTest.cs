@@ -110,5 +110,42 @@ namespace ParkingLotTest
             // Then
             Assert.Null(fetchedCar);
         }
+
+        [Fact]
+        public void Should_NOT_return_the_car_when_fetch_given_a_used_ticket()
+        {
+            // Given
+            Dictionary<Ticket, Car> ticketCarPairs = new Dictionary<Ticket, Car>();
+            Car givenCar = new Car();
+            Ticket givenTicket = new Ticket();
+
+            ticketCarPairs.Add(givenTicket, givenCar);
+
+            ParkingLot parkingLot = new ParkingLot(ticketCarPairs);
+
+            // When
+            Car fetchedCar = parkingLot.Fetch(givenTicket);
+            Car fetchedCarOtherTime = parkingLot.Fetch(givenTicket);
+            // Then
+            Assert.NotNull(fetchedCar);
+            Assert.Null(fetchedCarOtherTime);
+        }
+
+        [Fact]
+        public void Should_NOT_return_ticket_when_park_given_a_parkinglot_already_parked_10_cars()
+        {
+            // Given
+            Dictionary<Ticket, Car> ticketCarPairs = new Dictionary<Ticket, Car>();
+            for (int i = 0; i < ParkingLot.MaxCapacity; i++)
+            {
+                ticketCarPairs.Add(new Ticket(), new Car());
+            }
+
+            // When
+            ParkingLot parkingLot = new ParkingLot(ticketCarPairs);
+            Ticket ticket = parkingLot.Park(new Car());
+            // Then
+            Assert.Null(ticket);
+        }
     }
 }

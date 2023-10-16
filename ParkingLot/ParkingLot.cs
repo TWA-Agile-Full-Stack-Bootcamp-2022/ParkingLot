@@ -5,6 +5,7 @@ namespace ParkingLot
 {
     public class ParkingLot
     {
+        public const int MaxCapacity = 10;
         private Dictionary<Ticket, Car> ticketCarPairs = new Dictionary<Ticket, Car>();
 
         public ParkingLot()
@@ -28,6 +29,11 @@ namespace ParkingLot
 
         public virtual Ticket Park(Car car)
         {
+            if (ticketCarPairs.Count >= MaxCapacity)
+            {
+                return null;
+            }
+
             Ticket ticket = new Ticket();
             ticketCarPairs.Add(ticket, car);
             return ticket;
