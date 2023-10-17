@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ParkingLot
 {
@@ -9,6 +10,11 @@ namespace ParkingLot
         public ParkingLotManager(List<ParkingBoy> parkingBoys)
         {
             this.parkingBoys = parkingBoys;
+        }
+
+        public Car Fetch(Ticket givenTicket)
+        {
+            throw new NotImplementedException();
         }
 
         public Ticket Park(Car car)

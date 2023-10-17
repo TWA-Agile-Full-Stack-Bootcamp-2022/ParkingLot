@@ -14,6 +14,11 @@ namespace ParkingLot
 
         protected List<ParkingLot> ManagedParkingLots { get; set; }
 
+        public bool HasTicketInManagedParkingLots(Ticket givenTicket)
+        {
+            return ManagedParkingLots.Any(parkinlot => parkinlot.HasTicket(givenTicket));
+        }
+
         public Car Fetch(Ticket ticket)
         {
             if (ticket == null)

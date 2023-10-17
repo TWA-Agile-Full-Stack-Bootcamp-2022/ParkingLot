@@ -265,5 +265,45 @@
             // Then
             Assert.False(hasAvailableParkingLot);
         }
+
+        [Fact]
+
+        public void Should_return_true_when_ContainsTicketInManagedParkingLots_given_the_ticket_and_car_in_the_parkinglot()
+        {
+            // Given
+            Car givenCar = new Car();
+            Ticket givenTicket = new Ticket();
+            Dictionary<Ticket, Car> ticketCarPairs = new Dictionary<Ticket, Car>
+            {
+                { givenTicket, givenCar },
+            };
+
+            ParkingLot parkingLot = new ParkingLot(ticketCarPairs);
+            ParkingBoy parkingBoy = new ParkingBoy(new List<ParkingLot>() { new ParkingLot(), parkingLot });
+            // When
+            bool containsTheTicket = parkingBoy.HasTicketInManagedParkingLots(givenTicket);
+            // Then
+            Assert.True(containsTheTicket);
+        }
+
+        [Fact]
+        public void Should_return_false_when_HasTicketInManagedParkingLots_given_the_ticket_NOT_in_parkinglot()
+        {
+            // Given
+            Car givenCar = new Car();
+            Ticket givenTicket = new Ticket();
+            Ticket otherTicket = new Ticket();
+            Dictionary<Ticket, Car> ticketCarPairs = new Dictionary<Ticket, Car>
+            {
+                { givenTicket, givenCar },
+            };
+
+            ParkingLot parkingLot = new ParkingLot(ticketCarPairs);
+            ParkingBoy parkingBoy = new ParkingBoy(new List<ParkingLot>() { new ParkingLot(), parkingLot });
+            // When
+            bool containsTheTicket = parkingBoy.HasTicketInManagedParkingLots(otherTicket);
+            // Then
+            Assert.False(containsTheTicket);
+        }
     }
 }
