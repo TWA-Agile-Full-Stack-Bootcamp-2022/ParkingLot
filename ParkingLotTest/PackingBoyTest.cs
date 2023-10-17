@@ -14,7 +14,7 @@ namespace ParkingLotTest
         public void Parking_boy_can_park_a_car_into_parking_lot_and_returns_a_parking_ticket_which_could_be_used_to_fetch_car(string licensePlate)
         {
             // given
-            ParkingBoy parkingBoy = new ParkingBoy { ParkingLot = new ParkingLot() };
+            ParkingBoy parkingBoy = new ParkingBoy { ParkingLots = new List<ParkingLot> { new ParkingLot() } };
             Car car = new Car { LicensePlate = licensePlate, };
 
             // when
@@ -30,7 +30,7 @@ namespace ParkingLotTest
         public void Parking_boy_can_park_multiple_cars_into_on_parking_lot_and_can_fetch_right_car_using_correspond_ticket(params string[] licensePlates)
         {
             // given
-            ParkingBoy parkingBoy = new ParkingBoy { ParkingLot = new ParkingLot() };
+            ParkingBoy parkingBoy = new ParkingBoy { ParkingLots = new List<ParkingLot> { new ParkingLot() } };
             var cars = licensePlates.Select(licensePlate => new Car { LicensePlate = licensePlate, });
 
             // when
@@ -45,7 +45,7 @@ namespace ParkingLotTest
         public void When_parking_boy_attempt_to_park_a_car_into_a_parking_lot_without_a_position_error_message_should_be_not_enough_position(params string[] licensePlates)
         {
             // given
-            ParkingBoy parkingBoy = new ParkingBoy { ParkingLot = new ParkingLot() };
+            ParkingBoy parkingBoy = new ParkingBoy { ParkingLots = new List<ParkingLot> { new ParkingLot() } };
             var cars = licensePlates.Select(licensePlate => new Car { LicensePlate = licensePlate, });
             Assert.Equal(10, cars.Count());
 
@@ -64,7 +64,7 @@ namespace ParkingLotTest
         public void If_customer_does_not_give_a_ticket_then_no_car_should_be_fetched(string licensePlate)
         {
             // given
-            ParkingBoy parkingBoy = new ParkingBoy { ParkingLot = new ParkingLot() };
+            ParkingBoy parkingBoy = new ParkingBoy { ParkingLots = new List<ParkingLot> { new ParkingLot() } };
             Car car = new Car { LicensePlate = licensePlate, };
 
             // when
@@ -81,7 +81,7 @@ namespace ParkingLotTest
         public void If_customer_give_a_unknown_ticket_then_no_car_should_be_fetched(string licensePlate)
         {
             // given
-            ParkingBoy parkingBoy = new ParkingBoy { ParkingLot = new ParkingLot() };
+            ParkingBoy parkingBoy = new ParkingBoy { ParkingLots = new List<ParkingLot> { new ParkingLot() } };
             Car car = new Car { LicensePlate = licensePlate, };
 
             // when
@@ -98,7 +98,7 @@ namespace ParkingLotTest
         public void If_customer_gives_a_ticket_that_has_already_been_used_then_no_car_should_be_fetched(string licensePlate)
         {
              // given
-            ParkingBoy parkingBoy = new ParkingBoy { ParkingLot = new ParkingLot() };
+            ParkingBoy parkingBoy = new ParkingBoy { ParkingLots = new List<ParkingLot> { new ParkingLot() } };
             Car car = new Car { LicensePlate = licensePlate, };
 
             // when
