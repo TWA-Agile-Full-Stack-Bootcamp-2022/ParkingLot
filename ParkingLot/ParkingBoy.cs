@@ -12,12 +12,12 @@ namespace ParkingLot
 
         public Ticket Park(Car car)
         {
-            return new Ticket(car);
+            return parkingLots[0].Park(car);
         }
 
         public Car PickUp(Ticket ticket)
         {
-            return ticket.GetCar();
+            return parkingLots[0].PickUp(ticket);
         }
     }
 }
