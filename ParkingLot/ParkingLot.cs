@@ -17,7 +17,9 @@ namespace ParkingLot
         {
             if (parkingInfo.ContainsKey(ticket))
             {
-                return parkingInfo[ticket];
+                var car = parkingInfo[ticket];
+                parkingInfo.Remove(ticket);
+                return car;
             }
 
             return null;

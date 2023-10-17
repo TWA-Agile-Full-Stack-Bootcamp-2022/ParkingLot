@@ -51,5 +51,20 @@ namespace ParkingLotTest
             var pickUpCar = parkingBoy.PickUp(ticket);
             Assert.Null(pickUpCar);
         }
+
+        [Fact]
+        public void Should_get_null_when_given_ticket_has_already_used()
+        {
+            var car = new Car();
+            var parkingBoy = new ParkingBoy();
+            var parkingLot = new ParkingLot();
+            parkingBoy.AddParkingLot(parkingLot);
+            var ticket = parkingBoy.Park(car);
+
+            parkingBoy.PickUp(ticket);
+            var pickUpCar = parkingBoy.PickUp(ticket);
+
+            Assert.Null(pickUpCar);
+        }
     }
 }
