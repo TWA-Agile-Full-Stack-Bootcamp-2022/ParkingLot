@@ -19,6 +19,11 @@ namespace ParkingLot
 
         public Ticket Park(Car car)
         {
+            if (car == null)
+            {
+                throw new Exception("Car is null.");
+            }
+
             if (parkingInfo.Count >= capacity)
             {
                 throw new Exception("Parking lot is full.");
