@@ -8,5 +8,10 @@ namespace ParkingLot
         {
             this.car = car;
         }
+
+        public Car GetCar()
+        {
+            return car;
+        }
     }
 }

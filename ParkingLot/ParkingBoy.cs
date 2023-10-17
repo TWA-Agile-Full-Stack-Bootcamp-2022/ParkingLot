@@ -14,5 +14,10 @@ namespace ParkingLot
         {
             return new Ticket(car);
         }
+
+        public Car PickUp(Ticket ticket)
+        {
+            return ticket.GetCar();
+        }
     }
 }

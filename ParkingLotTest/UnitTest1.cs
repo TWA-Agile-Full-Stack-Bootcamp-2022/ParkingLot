@@ -24,5 +24,19 @@ namespace ParkingLotTest
 
             Assert.NotNull(ticket);
         }
+
+        [Fact]
+        public void Should_get_right_car_when_given_a_ticket_to_parking_boy()
+        {
+            var car = new Car();
+            var parkingBoy = new ParkingBoy();
+            var parkingLot = new ParkingLot();
+            parkingBoy.AddParkingLot(parkingLot);
+            var ticket = parkingBoy.Park(car);
+
+            var pickUpCar = parkingBoy.PickUp(ticket);
+
+            Assert.Equal(car, pickUpCar);
+        }
     }
 }
