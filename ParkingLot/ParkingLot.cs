@@ -16,6 +16,9 @@ namespace ParkingLot
         private readonly List<ParkingTicket> tickets = Enumerable.Range(1, Capacity).Select(i => new ParkingTicket()).ToList();
         private List<Car> parkedCars = new List<Car>(Capacity);
 
+        // NOTE: it's necessary to mark the IsFull as virtual as we want to mock it
+        public virtual bool IsFull => parkedCars.Count >= Capacity;
+
         public ParkingTicket ParkCar(Car car)
         {
             if (car == null)
@@ -28,12 +31,13 @@ namespace ParkingLot
                 throw new InvalidOperationException("Car is already parked");
             }
 
-            if (parkedCars.Count == Capacity)
+            if (IsFull)
             {
                 throw new InvalidOperationException("Not enough position.");
             }
 
             parkedCars.Add(car);
+            // NOTE: LINQ list.First
             var ticket = tickets.First(ticket => ticket.Issued == false);
             ticket.Issue(car.LicensePlate);
             return ticket;
