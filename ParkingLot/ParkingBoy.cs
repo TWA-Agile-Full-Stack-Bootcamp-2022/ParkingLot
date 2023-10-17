@@ -1,5 +1,7 @@
 ﻿using ParkingLot.Exceptions;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ParkingLot
 {
@@ -26,6 +28,11 @@ namespace ParkingLot
             }
 
             return parkingLotForTicket.Fetch(ticket);
+        }
+
+        public bool HasAvailableParkingLot()
+        {
+            return ManagedParkingLots.Any(parkinglot => !parkinglot.IsFull());
         }
 
         public virtual Ticket Park(Car car)

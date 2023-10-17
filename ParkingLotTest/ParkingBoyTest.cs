@@ -238,5 +238,32 @@
             Exception exception = Assert.Throws<NoTicketProvidedException>(action);
             Assert.Equal("Please provide your parking ticket.", exception.Message);
         }
+
+        [Fact]
+        public void Should_return_true_when_HasAvailableParkingLot_given_a_available_parkinglot()
+        {
+            // Given
+            ParkingLot notAvailableParkingLot = new ParkingLot(0);
+            ParkingLot parkingLot = new ParkingLot(1);
+            ParkingBoy parkingBoy = new ParkingBoy(new List<ParkingLot>() { notAvailableParkingLot, parkingLot });
+            // When
+            bool hasAvailableParkingLot = parkingBoy.HasAvailableParkingLot();
+            // Then
+            Assert.True(hasAvailableParkingLot);
+        }
+
+        [Fact]
+        public void Should_return_false_when_HasAvailableParkingLot_given_none_available_parkinglot()
+        {
+            // Given
+            ParkingLot notAvailableParkingLot = new ParkingLot(0);
+            ParkingLot parkingLot = new ParkingLot(1);
+            parkingLot.Park(new Car());
+            ParkingBoy parkingBoy = new ParkingBoy(new List<ParkingLot>() { notAvailableParkingLot, parkingLot });
+            // When
+            bool hasAvailableParkingLot = parkingBoy.HasAvailableParkingLot();
+            // Then
+            Assert.False(hasAvailableParkingLot);
+        }
     }
 }
