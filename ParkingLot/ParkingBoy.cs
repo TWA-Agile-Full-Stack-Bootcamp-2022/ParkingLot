@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace ParkingLot
@@ -17,7 +18,13 @@ namespace ParkingLot
 
         public Car PickUp(Ticket ticket)
         {
-            return parkingLots[0].PickUp(ticket);
+            var car = parkingLots[0].PickUp(ticket);
+            if (car == null)
+            {
+                throw new Exception("Unrecognized parking ticket.");
+            }
+
+            return car;
         }
     }
 }

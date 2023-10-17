@@ -41,7 +41,7 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Should_get_null_when_given_a_wrong_ticket_to_parking_boy()
+        public void Should_get_Exception_when_given_a_wrong_ticket_to_parking_boy()
         {
             var car = new Car();
             var parkingBoy = new ParkingBoy();
@@ -49,12 +49,13 @@ namespace ParkingLotTest
             parkingBoy.AddParkingLot(parkingLot);
 
             var ticket = new Ticket();
-            var pickUpCar = parkingBoy.PickUp(ticket);
-            Assert.Null(pickUpCar);
+            var exception = Assert.Throws<Exception>(() => parkingBoy.PickUp(ticket));
+
+            Assert.Equal("Unrecognized parking ticket.", exception.Message);
         }
 
         [Fact]
-        public void Should_get_null_when_given_ticket_has_already_used()
+        public void Should_get_Exception_when_given_ticket_has_already_used()
         {
             var car = new Car();
             var parkingBoy = new ParkingBoy();
@@ -63,9 +64,9 @@ namespace ParkingLotTest
             var ticket = parkingBoy.Park(car);
 
             parkingBoy.PickUp(ticket);
-            var pickUpCar = parkingBoy.PickUp(ticket);
+            var exception = Assert.Throws<Exception>(() => parkingBoy.PickUp(ticket));
 
-            Assert.Null(pickUpCar);
+            Assert.Equal("Unrecognized parking ticket.", exception.Message);
         }
 
         [Fact]
