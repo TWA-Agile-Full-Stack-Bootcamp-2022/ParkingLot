@@ -18,6 +18,11 @@ namespace ParkingLot
 
         public Car PickUp(Ticket ticket)
         {
+            if (ticket == null)
+            {
+                throw new Exception("Please provide your parking ticket.");
+            }
+
             var car = parkingLots[0].PickUp(ticket);
             if (car == null)
             {

@@ -104,5 +104,16 @@ namespace ParkingLotTest
             var exception = Assert.Throws<Exception>(() => parkingBoy.Park(null));
             Assert.Equal("Car is null.", exception.Message);
         }
+
+        [Fact]
+        public void Should_get_Exception_when_given_a_null_ticket()
+        {
+            var parkingBoy = new ParkingBoy();
+            var parkingLot = new ParkingLot();
+            parkingBoy.AddParkingLot(parkingLot);
+
+            var exception = Assert.Throws<Exception>(() => parkingBoy.PickUp(null));
+            Assert.Equal("Please provide your parking ticket.", exception.Message);
+        }
     }
 }
