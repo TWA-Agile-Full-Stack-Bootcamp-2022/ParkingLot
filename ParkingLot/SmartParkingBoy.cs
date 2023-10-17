@@ -35,7 +35,7 @@ namespace ParkingLot
                 .OrderByDescending(parkingLot => parkingLot.GetPositionLeft())
                 .First();
 
-            if (parkingLotHasMostPositionLeft == null)
+            if (parkingLotHasMostPositionLeft.IsFull())
             {
                 throw new NotEnoughPositionException();
             }

@@ -2,7 +2,10 @@
 
 namespace ParkingLotTest
 {
+    using Moq;
     using ParkingLot;
+    using ParkingLot.Exceptions;
+    using System;
     using System.Collections.Generic;
 
     public class SmartParkingBoyTest
@@ -23,6 +26,23 @@ namespace ParkingLotTest
             var recivedTicket = smartParkingBoy.Park(givenCar);
             // Then
             Assert.True(emptyParkingLot.HasTicket(recivedTicket));
+        }
+
+        [Fact]
+        public void Should_throw_NotEnoughPositionException_when_park_given_all_parkinglots_are_full()
+        {
+            // Given
+            Mock<ParkingLot> parkingLot = new Mock<ParkingLot>();
+            Mock<ParkingLot> otherParkingLot = new Mock<ParkingLot>();
+            parkingLot.Setup(parkingLot => parkingLot.IsFull()).Returns(true);
+            otherParkingLot.Setup(parkingLot => parkingLot.IsFull()).Returns(true);
+
+            SmartParkingBoy smartParkingBoy = new SmartParkingBoy(new List<ParkingLot> { parkingLot.Object, otherParkingLot.Object });
+            // When
+            Action action = () => smartParkingBoy.Park(new Car());
+            // Then
+            Exception exception = Assert.Throws<NotEnoughPositionException>(action);
+            Assert.Equal("Not enough position.", exception.Message);
         }
     }
 }
