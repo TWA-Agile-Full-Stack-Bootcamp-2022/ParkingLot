@@ -65,7 +65,7 @@ namespace ParkingLot
 
         public virtual bool IsFull()
         {
-            return ticketCarPairs.Count == DefaultCapacity;
+            return ticketCarPairs.Count == Capacity;
         }
 
         public virtual Ticket Park(Car car)
