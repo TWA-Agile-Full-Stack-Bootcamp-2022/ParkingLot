@@ -35,6 +35,11 @@ namespace ParkingLot
             return fetchedCar;
         }
 
+        public float GetAvailablePositionRate()
+        {
+            return (float)(MaxCapacity - ticketCarPairs.Count) / MaxCapacity;
+        }
+
         public int GetPositionLeft()
         {
             return MaxCapacity - ticketCarPairs.Count;

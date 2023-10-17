@@ -225,5 +225,24 @@ namespace ParkingLotTest
             // Then
             Assert.Equal(8, positionLeft);
         }
+
+        [Fact]
+        public void Should_return_the_available_position_rate_when_GetAvailablePositionRate__by_given_parkinglot()
+        {
+            float epsilon = 1e-2f;
+
+            // Given
+            Dictionary<Ticket, Car> ticketCarPairs = new Dictionary<Ticket, Car>
+            {
+                { new Ticket(), new Car() },
+                { new Ticket(), new Car() },
+            };
+
+            ParkingLot parkingLot = new ParkingLot(ticketCarPairs);
+            // When
+            float availablePositionRate = parkingLot.GetAvailablePositionRate();
+            // Then
+            Assert.True(Math.Abs(availablePositionRate - 0.8) < epsilon);
+        }
     }
 }
