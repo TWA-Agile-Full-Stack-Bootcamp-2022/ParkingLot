@@ -2,6 +2,7 @@ namespace ParkingLot
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
 
     // NOTE: Domain driven design & UML for OO
@@ -27,9 +28,9 @@ namespace ParkingLot
                 throw new InvalidOperationException("Car is already parked");
             }
 
-            if (parkedCars.Count >= Capacity)
+            if (parkedCars.Count == Capacity)
             {
-                return null;
+                throw new InvalidOperationException("Not enough position.");
             }
 
             parkedCars.Add(car);
@@ -42,17 +43,12 @@ namespace ParkingLot
         {
             if (ticket == null)
             {
-                throw new ArgumentNullException(nameof(ticket));
+                throw new InvalidOperationException("Please provide your parking ticket.");
             }
 
-            if (ticket.Used == true)
+            if (ticket.Used == true || !tickets.Contains(ticket))
             {
-                throw new InvalidOperationException("Ticket has already been used");
-            }
-
-            if (!tickets.Contains(ticket))
-            {
-                throw new InvalidOperationException("Wrong ticket");
+                throw new InvalidOperationException("Unrecognized parking ticket.");
             }
 
             var car = parkedCars.Find(car => car.LicensePlate == ticket.LicensePlate);
