@@ -14,7 +14,14 @@ namespace ParkingLot
 
         public Car Fetch(Ticket givenTicket)
         {
-            throw new NotImplementedException();
+            ParkingBoy parkingBoyWhoManagedTicket = parkingBoys.Find(parkingboy => parkingboy.HasTicketInManagedParkingLots(givenTicket));
+            if (parkingBoyWhoManagedTicket == null)
+            {
+                // Needs to clarify requirements: no Available parking boy ?
+                return null;
+            }
+
+            return parkingBoyWhoManagedTicket.Fetch(givenTicket);
         }
 
         public Ticket Park(Car car)
