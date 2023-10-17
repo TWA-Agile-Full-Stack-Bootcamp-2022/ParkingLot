@@ -19,7 +19,14 @@ namespace ParkingLot
 
         private ParkingBoy FindAvailableParkingBoy()
         {
-            return null;
+            ParkingBoy parkingBoyAvailable = parkingBoys.Find(parkingBoy => parkingBoy.HasAvailableParkingLot());
+            if (parkingBoyAvailable == null)
+            {
+                // Needs to clarify requirements: no Available parking boy ?
+                return null;
+            }
+
+            return parkingBoyAvailable;
         }
     }
 }
