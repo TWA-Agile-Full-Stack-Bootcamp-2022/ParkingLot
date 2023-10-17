@@ -7,9 +7,10 @@
     public class ParkingBoy
     {
         public List<ParkingLot> ParkingLots { get; set; }
+        public IParkingStrategy ParkingStrategy { get; set; } = new StandardParkingStrategy();
 
-        public ParkingTicket ParkCar(Car car) => ParkingLots.First().ParkCar(car);
+        public ParkingTicket ParkCar(Car car) => ParkingStrategy.Which(ParkingLots).ParkCar(car);
 
-        public Car FetchCar(ParkingTicket ticket) => ParkingLots.First().FetchCar(ticket);
+        public Car FetchCar(ParkingTicket ticket) => ParkingStrategy.Which(ParkingLots).FetchCar(ticket);
     }
 }
