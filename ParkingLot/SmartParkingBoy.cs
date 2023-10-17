@@ -12,7 +12,7 @@ namespace ParkingLot
 
         public override Ticket Park(Car car)
         {
-            ParkingLot parkingLotHasMostPositionLeft = ParkingLots
+            ParkingLot parkingLotHasMostPositionLeft = ManagedParkingLots
                 .OrderByDescending(parkingLot => parkingLot.GetPositionLeft())
                 .First();
 
