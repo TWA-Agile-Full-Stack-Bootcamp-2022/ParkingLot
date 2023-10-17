@@ -24,6 +24,11 @@ namespace ParkingLot
             this.ticketCarPairs = ticketCarPairs;
         }
 
+        public ParkingLot(Dictionary<Ticket, Car> ticketCarPairs, int capacity) : this(ticketCarPairs)
+        {
+            Capacity = capacity;
+        }
+
         public int Capacity { get; set; } = DefaultCapacity;
 
         public virtual Car Fetch(Ticket ticketRecived)
@@ -45,12 +50,12 @@ namespace ParkingLot
 
         public float GetAvailablePositionRate()
         {
-            return (float)(DefaultCapacity - ticketCarPairs.Count) / DefaultCapacity;
+            return (float)(Capacity - ticketCarPairs.Count) / Capacity;
         }
 
         public int GetPositionLeft()
         {
-            return DefaultCapacity - ticketCarPairs.Count;
+            return Capacity - ticketCarPairs.Count;
         }
 
         public bool HasTicket(Ticket ticket)

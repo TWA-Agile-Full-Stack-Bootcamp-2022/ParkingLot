@@ -13,18 +13,24 @@ namespace ParkingLotTest
         public void Should_parking_to_larger_available_position_rate_parkinglot_when_park_given_two_different_parkinglots()
         {
             // Given
-            ParkingLot emptyParkingLot = new ParkingLot();
+            int firstParkingLotCapacity = 2;
+            int secondParkingLotCapacity = 3;
+            ParkingLot firstParkingLot = new ParkingLot(firstParkingLotCapacity);
 
             Dictionary<Ticket, Car> ticketCarPairs = new Dictionary<Ticket, Car>();
             ticketCarPairs.Add(new Ticket(), new Car());
-            ParkingLot notEmptyParkingLot = new ParkingLot(ticketCarPairs);
+            ParkingLot secondeParkingLot = new ParkingLot(ticketCarPairs, secondParkingLotCapacity);
 
-            var smartParkingBoy = new SmartParkingBoy(new List<ParkingLot> { notEmptyParkingLot, emptyParkingLot });
+            var superSmartParkingBoy = new SmartParkingBoy(new List<ParkingLot> { firstParkingLot, secondeParkingLot });
             Car givenCar = new Car();
+
             // When
-            var recivedTicket = smartParkingBoy.Park(givenCar);
+            var recivedTicket = superSmartParkingBoy.Park(givenCar);
+
             // Then
-            Assert.True(emptyParkingLot.HasTicket(recivedTicket));
+            Assert.True(firstParkingLot.HasTicket(recivedTicket));
+            Assert.Equal(0.5, firstParkingLot.GetAvailablePositionRate());
+            Assert.Equal(0.67, Math.Round(secondeParkingLot.GetAvailablePositionRate(), 2));
         }
 
         [Fact]
@@ -36,7 +42,7 @@ namespace ParkingLotTest
             parkingLot.Setup(parkingLot => parkingLot.IsFull()).Returns(true);
             otherParkingLot.Setup(parkingLot => parkingLot.IsFull()).Returns(true);
 
-            SmartParkingBoy smartParkingBoy = new SmartParkingBoy(new List<ParkingLot> { parkingLot.Object, otherParkingLot.Object });
+            SuperSmartParkingBoy smartParkingBoy = new SuperSmartParkingBoy(new List<ParkingLot> { parkingLot.Object, otherParkingLot.Object });
             // When
             Action action = () => smartParkingBoy.Park(new Car());
             // Then
