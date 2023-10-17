@@ -1,5 +1,4 @@
 ﻿using ParkingLot.Exceptions;
-using System;
 using System.Collections.Generic;
 
 namespace ParkingLot
