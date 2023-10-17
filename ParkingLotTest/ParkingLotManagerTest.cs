@@ -54,5 +54,37 @@ namespace ParkingLotTest
             Assert.NotNull(fetchedCar);
             Assert.Equal(givenCar, fetchedCar);
         }
+
+        [Fact]
+        public void Should_return_ticket_when_manager_park_given_none_of_parkingboy_and_a_car()
+        {
+            // Given
+            List<ParkingLot> parkingLots = new List<ParkingLot> { new ParkingLot(), new ParkingLot() };
+            ParkingLotManager parkingLotManager = new ParkingLotManager(parkingLots);
+            // When
+            Ticket ticket = parkingLotManager.Park(new Car());
+            // Then
+            Assert.NotNull(ticket);
+        }
+
+        [Fact]
+        public void Should_fetch_the_car_when_manager_fetch_given_none_of_parkingboy_and_a_ticket()
+        {
+            // Given
+            Car givenCar = new Car();
+            Ticket givenTicket = new Ticket();
+            Dictionary<Ticket, Car> ticketCarPairs = new Dictionary<Ticket, Car>
+            {
+                { givenTicket, givenCar },
+            };
+            ParkingLot givenParkingLot = new ParkingLot(ticketCarPairs);
+            List<ParkingLot> parkingLots = new List<ParkingLot> { givenParkingLot, new ParkingLot() };
+            ParkingLotManager parkingLotManager = new ParkingLotManager(parkingLots);
+            // When
+            Car fetchedCar = parkingLotManager.Fetch(givenTicket);
+            // Then
+            Assert.NotNull(fetchedCar);
+            Assert.Equal(givenCar, fetchedCar);
+        }
     }
 }
