@@ -209,5 +209,21 @@ namespace ParkingLotTest
             // Then
             Assert.False(hasTicket);
         }
+
+        [Fact]
+        public void Should_return_the_number_of_position_left_when_GetPositionLeft_by_given_parkinglot()
+        {
+            // Given
+            Dictionary<Ticket, Car> ticketCarPairs = new Dictionary<Ticket, Car>
+            {
+                { new Ticket(), new Car() },
+                { new Ticket(), new Car() },
+            };
+            ParkingLot parkingLot = new ParkingLot(ticketCarPairs);
+            // When
+            int positionLeft = parkingLot.GetPositionLeft();
+            // Then
+            Assert.Equal(8, positionLeft);
+        }
     }
 }

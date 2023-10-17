@@ -35,6 +35,11 @@ namespace ParkingLot
             return fetchedCar;
         }
 
+        public int GetPositionLeft()
+        {
+            return MaxCapacity - ticketCarPairs.Count;
+        }
+
         public bool HasTicket(Ticket ticket)
         {
             return ticketCarPairs.ContainsKey(ticket);
