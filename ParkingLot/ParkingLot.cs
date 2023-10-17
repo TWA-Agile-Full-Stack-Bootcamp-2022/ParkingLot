@@ -14,12 +14,12 @@ namespace ParkingLot
         // private readonly List<ParkingTicket> tickets = Enumerable.Repeat(new ParkingTicket(), Capacity).ToList();
         // NOTE: use Enumerable.Range to initialize a list field
         private readonly List<ParkingTicket> tickets = Enumerable.Range(1, Capacity).Select(i => new ParkingTicket()).ToList();
-        private List<Car> parkedCars = new List<Car>(Capacity);
+        public List<Car> ParkedCars { get; set; } = new List<Car>(Capacity);
 
         // NOTE: it's necessary to mark the IsFull as virtual as we want to mock it
-        public virtual bool IsFull => parkedCars.Count >= Capacity;
+        public virtual bool IsFull => ParkedCars.Count >= Capacity;
 
-        public virtual int NumOfEmptyPositions => Capacity - parkedCars.Count;
+        public virtual int NumOfEmptyPositions => Capacity - ParkedCars.Count;
 
         public ParkingTicket ParkCar(Car car)
         {
@@ -28,7 +28,7 @@ namespace ParkingLot
                 throw new ArgumentNullException(nameof(car));
             }
 
-            if (parkedCars.Contains(car))
+            if (ParkedCars.Contains(car))
             {
                 throw new InvalidOperationException("Car is already parked");
             }
@@ -38,7 +38,7 @@ namespace ParkingLot
                 throw new InvalidOperationException("Not enough position.");
             }
 
-            parkedCars.Add(car);
+            ParkedCars.Add(car);
             // NOTE: LINQ list.First
             var ticket = tickets.First(ticket => ticket.Issued == false);
             ticket.Issue(car.LicensePlate);
@@ -57,8 +57,8 @@ namespace ParkingLot
                 throw new InvalidOperationException("Unrecognized parking ticket.");
             }
 
-            var car = parkedCars.Find(car => car.LicensePlate == ticket.LicensePlate);
-            parkedCars.Remove(car);
+            var car = ParkedCars.Find(car => car.LicensePlate == ticket.LicensePlate);
+            ParkedCars.Remove(car);
             ticket.Retrieve();
             return car;
         }

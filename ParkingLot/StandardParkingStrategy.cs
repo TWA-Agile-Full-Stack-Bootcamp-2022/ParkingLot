@@ -9,15 +9,8 @@ namespace ParkingLot
         public ParkingLot Which(List<ParkingLot> parkingLots)
         {
             // NOTE: FirstOrDefault return null if no expected item, First throw an Exception
-            var parkingLot = parkingLots.FirstOrDefault(parkingLot => !parkingLot.IsFull);
-            if (parkingLot == null)
-            {
-                throw new InvalidOperationException("Not enough position.");
-            }
-            else
-            {
-                return parkingLot;
-            }
+            return parkingLots.FirstOrDefault(parkingLot => !parkingLot.IsFull)
+                ?? throw new InvalidOperationException("Not enough position.");
         }
     }
 }
