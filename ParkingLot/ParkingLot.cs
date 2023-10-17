@@ -9,7 +9,7 @@ namespace ParkingLot
     // NOTE: The presence or absence of Parking Lot and Parking Boy on each other determines which class the method should belong to. park and fetch should belong to Parking Lot, because a car does not necessarily have to have the same parking boy to park and pick up the car. Parking Lot also could have multiple parking boys. From a UML class diagram perspective, the parking boy relies on parking lots
     public class ParkingLot
     {
-        private const int Capacity = 10;
+        public const int Capacity = 10;
         // NOTE: Do not use Enumerable.Repeat(new ParkingTicket(), Capacity).ToList() to initialize the tickets as all member are same if yo do so
         // private readonly List<ParkingTicket> tickets = Enumerable.Repeat(new ParkingTicket(), Capacity).ToList();
         // NOTE: use Enumerable.Range to initialize a list field
