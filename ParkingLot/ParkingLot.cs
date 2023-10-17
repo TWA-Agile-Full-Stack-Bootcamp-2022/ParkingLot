@@ -1,13 +1,29 @@
+using System;
 using System.Collections.Generic;
 
 namespace ParkingLot
 {
     public class ParkingLot
     {
+        private int capacity = 10;
         private Dictionary<Ticket, Car> parkingInfo = new Dictionary<Ticket, Car>();
+
+        public ParkingLot()
+        {
+        }
+
+        public ParkingLot(int capacity)
+        {
+            this.capacity = capacity;
+        }
 
         public Ticket Park(Car car)
         {
+            if (parkingInfo.Count >= capacity)
+            {
+                throw new Exception("Parking lot is full.");
+            }
+
             Ticket ticket = new Ticket();
             parkingInfo.Add(ticket, car);
             return ticket;

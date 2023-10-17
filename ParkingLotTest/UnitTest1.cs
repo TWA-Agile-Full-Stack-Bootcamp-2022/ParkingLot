@@ -2,6 +2,7 @@ namespace ParkingLotTest
 {
     using ParkingLot;
     using Xunit;
+    using System;
 
     public class UnitTest1
     {
@@ -65,6 +66,18 @@ namespace ParkingLotTest
             var pickUpCar = parkingBoy.PickUp(ticket);
 
             Assert.Null(pickUpCar);
+        }
+
+        [Fact]
+        public void Should_get_no_enough_position_Exception_when_parking_lot_is_full()
+        {
+            var parkingLot = new ParkingLot(1);
+            var parkingBoy = new ParkingBoy();
+            parkingBoy.AddParkingLot(parkingLot);
+            parkingBoy.Park(new Car());
+
+            var exception = Assert.Throws<Exception>(() => parkingBoy.Park(new Car()));
+            Assert.Equal("Parking lot is full.", exception.Message);
         }
     }
 }
