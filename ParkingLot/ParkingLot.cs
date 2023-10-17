@@ -19,6 +19,8 @@ namespace ParkingLot
         // NOTE: it's necessary to mark the IsFull as virtual as we want to mock it
         public virtual bool IsFull => parkedCars.Count >= Capacity;
 
+        public virtual int NumOfEmptyPositions => Capacity - parkedCars.Count;
+
         public ParkingTicket ParkCar(Car car)
         {
             if (car == null)
