@@ -1,6 +1,7 @@
 namespace ParkingLotTest
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Linq;
     using ParkingLot;
@@ -40,6 +41,25 @@ namespace ParkingLotTest
         }
 
         [Theory]
+        [InlineData("1234", "2345", "3456", "4567", "5678", "6789", "7890", "8901", "9012", "0123")]
+        public void When_parking_boy_attempt_to_park_a_car_into_a_parking_lot_without_a_position_error_message_should_be_not_enough_position(params string[] licensePlates)
+        {
+            // given
+            ParkingBoy parkingBoy = new ParkingBoy { ParkingLot = new ParkingLot() };
+            var cars = licensePlates.Select(licensePlate => new Car { LicensePlate = licensePlate, });
+            Assert.Equal(10, cars.Count());
+
+            // when
+            var tickets = cars.Select(parkingBoy.ParkCar);
+            Assert.Equal(10, tickets.Count());
+            void Action() => parkingBoy.ParkCar(new Car { LicensePlate = "1111", });
+
+            // then
+            var exception = Assert.Throws<InvalidOperationException>(Action);
+            Assert.Equal("Not enough position.", exception.Message);
+        }
+
+        [Theory]
         [InlineData("1234")]
         public void If_customer_does_not_give_a_ticket_then_no_car_should_be_fetched(string licensePlate)
         {
@@ -52,7 +72,8 @@ namespace ParkingLotTest
             void Action() => parkingBoy.FetchCar(ticket);
 
             // then
-            Assert.Throws<ArgumentNullException>(Action);
+            var exception = Assert.Throws<InvalidOperationException>(Action);
+            Assert.Equal("Please provide your parking ticket.", exception.Message);
         }
 
         [Theory]
@@ -68,7 +89,8 @@ namespace ParkingLotTest
             void Action() => parkingBoy.FetchCar(new ParkingTicket());
 
             // then
-            Assert.Throws<InvalidOperationException>(Action);
+            var exception = Assert.Throws<InvalidOperationException>(Action);
+            Assert.Equal("Unrecognized parking ticket.", exception.Message);
         }
 
         [Theory]
@@ -85,7 +107,8 @@ namespace ParkingLotTest
             void Action() => parkingBoy.FetchCar(ticket);
 
             // then
-            Assert.Throws<InvalidOperationException>(Action);
+            var exception = Assert.Throws<InvalidOperationException>(Action);
+            Assert.Equal("Unrecognized parking ticket.", exception.Message);
         }
     }
 }
