@@ -19,11 +19,11 @@
                 throw new InvalidOperationException("Please provide your parking ticket.");
             }
 
-            return WhichParkingLotCarParkedIn(ticket.LicensePlate)?.FetchCar(ticket)
+            return Locate(ticket.LicensePlate)?.FetchCar(ticket)
                 ?? throw new InvalidOperationException("Unrecognized parking ticket.");
         }
 
-        public ParkingLot WhichParkingLotCarParkedIn(string licensePlate) =>
+        public ParkingLot Locate(string licensePlate) =>
             // NOTE: Determines whether the List(T) contains elements that match the conditions defined by the specified predicate.
             ParkingLots.FirstOrDefault(parkingLot => parkingLot.ParkedCars.Exists(car => car.LicensePlate == licensePlate));
     }

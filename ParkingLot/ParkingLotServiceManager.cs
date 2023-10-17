@@ -30,8 +30,8 @@ namespace ParkingLot
             return ManagementList[rnd.Next(ManagementList.Count)].ParkCar(car);
         }
 
-        public new Car FetchCar(ParkingTicket ticket) => WhichParkingLotCarParkedIn(ticket.LicensePlate)?.FetchCar(ticket)
-            ?? ManagementList.FirstOrDefault(parkingBoy => parkingBoy.WhichParkingLotCarParkedIn(ticket.LicensePlate) != null)?.FetchCar(ticket)
+        public new Car FetchCar(ParkingTicket ticket) => Locate(ticket.LicensePlate)?.FetchCar(ticket)
+            ?? ManagementList.FirstOrDefault(parkingBoy => parkingBoy.Locate(ticket.LicensePlate) != null)?.FetchCar(ticket)
             ?? throw new InvalidOperationException("Unrecognized parking ticket.");
     }
 }

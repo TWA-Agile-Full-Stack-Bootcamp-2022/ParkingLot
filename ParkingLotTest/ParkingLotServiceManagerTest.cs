@@ -22,7 +22,7 @@ namespace ParkingLotTest
             ParkingBoy parkingBoy2 = new ParkingBoy { ParkingLots = new List<ParkingLot> { parkingLot2 } };
             ParkingBoy parkingBoy3 = new ParkingBoy { ParkingLots = new List<ParkingLot> { parkingLot3 } };
 
-            // NOTE: the ParkingLots of the parkingLotServiceManager have to be given otherwise the WhichParkingLotCarParkedIn of parkingLotServiceManager.FetchCar throw error that complain ParkingLots is null
+            // NOTE: the ParkingLots of the parkingLotServiceManager have to be given otherwise the Locate of parkingLotServiceManager.FetchCar throw error that complain ParkingLots is null
             ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager { ParkingLots = new List<ParkingLot> { new ParkingLot() } };
             parkingLotServiceManager.AddParkingBoy(parkingBoy1);
             parkingLotServiceManager.AddParkingBoy(parkingBoy2);
