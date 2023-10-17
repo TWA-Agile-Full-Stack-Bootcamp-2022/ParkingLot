@@ -5,12 +5,12 @@ namespace ParkingLot
 {
     public class ParkingBoy
     {
-        private List<ParkingLot> parkingLots;
-
         public ParkingBoy(List<ParkingLot> parkingLots)
         {
-            this.parkingLots = parkingLots;
+            ParkingLots = parkingLots;
         }
+
+        protected List<ParkingLot> ParkingLots { get; set; }
 
         public Car Fetch(Ticket ticket)
         {
@@ -19,7 +19,7 @@ namespace ParkingLot
                 throw new NoTicketProvidedException();
             }
 
-            ParkingLot parkingLotForTicket = parkingLots.Find(parkinglot => parkinglot.HasTicket(ticket));
+            ParkingLot parkingLotForTicket = ParkingLots.Find(parkinglot => parkinglot.HasTicket(ticket));
             if (parkingLotForTicket == null)
             {
                 throw new UnrecognizedParkingTicketException();
@@ -28,9 +28,9 @@ namespace ParkingLot
             return parkingLotForTicket.Fetch(ticket);
         }
 
-        public Ticket Park(Car car)
+        public virtual Ticket Park(Car car)
         {
-            ParkingLot availableParkingLot = parkingLots.Find(parkingLot => !parkingLot.IsFull());
+            ParkingLot availableParkingLot = ParkingLots.Find(parkingLot => !parkingLot.IsFull());
             if (availableParkingLot == null)
             {
                 throw new NotEnoughPositionException();

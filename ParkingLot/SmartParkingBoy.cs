@@ -4,34 +4,15 @@ using System.Linq;
 
 namespace ParkingLot
 {
-    public class SmartParkingBoy
+    public class SmartParkingBoy : ParkingBoy
     {
-        private List<ParkingLot> parkingLots;
-
-        public SmartParkingBoy(List<ParkingLot> parkingLots)
+        public SmartParkingBoy(List<ParkingLot> parkingLots) : base(parkingLots)
         {
-            this.parkingLots = parkingLots;
         }
 
-        public Car Fetch(Ticket ticket)
+        public override Ticket Park(Car car)
         {
-            if (ticket == null)
-            {
-                throw new NoTicketProvidedException();
-            }
-
-            ParkingLot parkingLotForTicket = parkingLots.Find(parkinglot => parkinglot.HasTicket(ticket));
-            if (parkingLotForTicket == null)
-            {
-                throw new UnrecognizedParkingTicketException();
-            }
-
-            return parkingLotForTicket.Fetch(ticket);
-        }
-
-        public Ticket Park(Car car)
-        {
-            ParkingLot parkingLotHasMostPositionLeft = parkingLots
+            ParkingLot parkingLotHasMostPositionLeft = ParkingLots
                 .OrderByDescending(parkingLot => parkingLot.GetPositionLeft())
                 .First();
 
