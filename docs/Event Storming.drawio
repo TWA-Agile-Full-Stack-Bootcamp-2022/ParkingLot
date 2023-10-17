@@ -1,0 +1,197 @@
+<mxfile host="65bd71144e">
+    <diagram id="e9sPraoP785-KqfSgHeZ" name="Legend">
+        <mxGraphModel dx="3344" dy="2269" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="uYLCobQwmRs5UvER6pXL-1" value="" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Courier New;fillColor=#CFCFCF;dashed=1;strokeColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="-590" y="-770" width="960" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="uYLCobQwmRs5UvER6pXL-2" value="Event" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#666600;hachureGap=4;fontFamily=Courier New;rounded=1;" vertex="1" parent="1">
+                    <mxGeometry x="-560" y="-745" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="uYLCobQwmRs5UvER6pXL-3" value="Command" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;hachureGap=4;fontFamily=Courier New;rounded=1;" vertex="1" parent="1">
+                    <mxGeometry x="-420" y="-745" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="uYLCobQwmRs5UvER6pXL-4" value="Actor" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;hachureGap=4;fontFamily=Courier New;rounded=1;" vertex="1" parent="1">
+                    <mxGeometry x="-280" y="-745" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="uYLCobQwmRs5UvER6pXL-5" value="External System" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;hachureGap=4;fontFamily=Courier New;rounded=1;" vertex="1" parent="1">
+                    <mxGeometry x="-130" y="-745" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="uYLCobQwmRs5UvER6pXL-6" value="Policy" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#60a917;strokeColor=#2D7600;hachureGap=4;fontFamily=Courier New;rounded=1;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="20" y="-745" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="uYLCobQwmRs5UvER6pXL-7" value="Domain Name" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#fa6800;strokeColor=#C73500;hachureGap=4;fontFamily=Courier New;rounded=1;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="160" y="-745" width="110" height="130" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="-jJN3a70kK5S6DEhcQGS" name="Domain Events and Commands">
+        <mxGraphModel dx="2704" dy="2269" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="8" value="Car parked" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#666600;hachureGap=4;fontFamily=Courier New;rounded=1;" parent="1" vertex="1">
+                    <mxGeometry x="-870" y="-980" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="Parking ticket returned" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#666600;hachureGap=4;fontFamily=Courier New;rounded=1;" parent="1" vertex="1">
+                    <mxGeometry x="-470" y="-600" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Parking ticket given" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#666600;hachureGap=4;fontFamily=Courier New;rounded=1;" parent="1" vertex="1">
+                    <mxGeometry x="-280" y="-590" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="Car fetched" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#666600;hachureGap=4;fontFamily=Courier New;rounded=1;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="-260" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="Park car" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;hachureGap=4;fontFamily=Courier New;rounded=1;" parent="1" vertex="1">
+                    <mxGeometry x="-910" y="-870" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="Parking boy" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;hachureGap=4;fontFamily=Courier New;rounded=1;" parent="1" vertex="1">
+                    <mxGeometry x="-980" y="-780" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="Return parking ticket" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;hachureGap=4;fontFamily=Courier New;rounded=1;" parent="1" vertex="1">
+                    <mxGeometry x="-490" y="-480" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="Give parking ticket" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;hachureGap=4;fontFamily=Courier New;rounded=1;" parent="1" vertex="1">
+                    <mxGeometry x="-310" y="-480" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="Customer" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;hachureGap=4;fontFamily=Courier New;rounded=1;" parent="1" vertex="1">
+                    <mxGeometry x="-340" y="-370" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="Fetch car" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;hachureGap=4;fontFamily=Courier New;rounded=1;" parent="1" vertex="1">
+                    <mxGeometry x="70" y="-150" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="Parking boy" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;hachureGap=4;fontFamily=Courier New;rounded=1;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="-40" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="" style="endArrow=classic;html=1;fontFamily=Courier New;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0;exitDx=110;exitDy=75;exitPerimeter=0;dashed=1;curved=1;" parent="1" source="8" target="JFETgiaBHRB2cvtjjYxP-38" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="-620" y="-520" as="sourcePoint"/>
+                        <mxPoint x="-570" y="-570" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="-720" y="-900"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="24" value="" style="endArrow=classic;html=1;fontFamily=Courier New;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0;exitDx=110;exitDy=75;exitPerimeter=0;dashed=1;curved=1;" parent="1" source="9" target="10" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="-610" y="-515" as="sourcePoint"/>
+                        <mxPoint x="-460" y="-525" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="27" value="If the customer gives a ticket that has already been used" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#60a917;strokeColor=#2D7600;hachureGap=4;fontFamily=Courier New;rounded=1;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="-770" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="" style="endArrow=classic;html=1;fontFamily=Courier New;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0;exitDx=110;exitDy=75;exitPerimeter=0;dashed=1;curved=1;startArrow=none;" parent="1" source="10" target="27" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="150" y="-495" as="sourcePoint"/>
+                        <mxPoint x="230" y="-505" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="30" value="If the customer gives a wrong ticket (the parking boy does not provide the ticket) or does not give a ticket." style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#60a917;strokeColor=#2D7600;hachureGap=4;fontFamily=Courier New;rounded=1;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="60" y="-600" width="120" height="240" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="" style="endArrow=classic;html=1;fontFamily=Courier New;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0;exitDx=110;exitDy=75;exitPerimeter=0;dashed=1;curved=1;startArrow=none;" edge="1" parent="1" source="10" target="30">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="-70" y="-505" as="sourcePoint"/>
+                        <mxPoint x="30" y="-505" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="32" value="If there is available position in the parking lot" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#60a917;strokeColor=#2D7600;hachureGap=4;fontFamily=Courier New;rounded=1;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="-1110" y="-990" width="120" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" value="" style="endArrow=classic;html=1;fontFamily=Courier New;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;curved=1;" edge="1" parent="1" source="32" target="8">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="-750" y="-895" as="sourcePoint"/>
+                        <mxPoint x="-600" y="-895" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="36" value="If the customer gives the correspond ticket" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;hachureGap=4;fontFamily=Courier New;rounded=1;" vertex="1" parent="1">
+                    <mxGeometry x="-110" y="-390" width="120" height="240" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="" style="endArrow=classic;html=1;fontFamily=Courier New;entryX=0;entryY=0;entryDx=50;entryDy=0;entryPerimeter=0;exitX=0;exitY=0;exitDx=110;exitDy=75;exitPerimeter=0;dashed=1;curved=1;startArrow=none;" edge="1" parent="1" source="10" target="36">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="-160" y="-505" as="sourcePoint"/>
+                        <mxPoint x="70" y="-470" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="38" value="" style="endArrow=classic;html=1;fontFamily=Courier New;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0;exitDx=120;exitDy=130;exitPerimeter=0;dashed=1;curved=1;startArrow=none;" edge="1" parent="1" source="36" target="11">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="-160" y="-505" as="sourcePoint"/>
+                        <mxPoint x="-50" y="-380" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="2OCkTKxjlTCHyz718JE4-43" value="&lt;b&gt;Q: How do you determine what classes there are?&lt;/b&gt;&lt;br&gt;A:&amp;nbsp;Depends on what domain name is there.&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Q: How do I determine which class each command belongs to?&lt;/b&gt;&lt;br&gt;A: In DDD workshop, we teach how to divide the bounded context, and in this topic we have to consider more detailed questions, that is, once the class is determined, we must consider the Actor as the trigger (invoker) of the command, the command can be its own method or other class methods, depending on the real business, eg.&amp;nbsp;If one of the parking boys in the parking lot does not exist, can the car still be taken out, or must the parking boy who took the car and the parking boy be the same person, if not, then the method of parking and picking up the car should not belong to the parking boy.&lt;br&gt;UML:&amp;nbsp;dependency, generalization, realize, association, aggregation, composition&lt;br&gt;" style="strokeWidth=1;shadow=0;dashed=0;align=left;html=1;shape=mxgraph.mockup.text.stickyNote2;fontColor=#666666;mainText=;fontSize=17;whiteSpace=wrap;fillColor=#ffffcc;strokeColor=#F62E00;verticalAlign=top;spacing=70;" vertex="1" parent="1">
+                    <mxGeometry x="-1690" y="-760" width="480" height="610" as="geometry"/>
+                </mxCell>
+                <mxCell id="JFETgiaBHRB2cvtjjYxP-38" value="Ticket issued" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#666600;hachureGap=4;fontFamily=Courier New;rounded=1;" vertex="1" parent="1">
+                    <mxGeometry x="-500" y="-950" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="JFETgiaBHRB2cvtjjYxP-39" value="Issue Ticket" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;hachureGap=4;fontFamily=Courier New;rounded=1;" vertex="1" parent="1">
+                    <mxGeometry x="-570" y="-880" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="JFETgiaBHRB2cvtjjYxP-40" value="Parking boy" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;hachureGap=4;fontFamily=Courier New;rounded=1;" vertex="1" parent="1">
+                    <mxGeometry x="-600" y="-800" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="JFETgiaBHRB2cvtjjYxP-42" value="" style="endArrow=classic;html=1;fontFamily=Courier New;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0;exitDx=110;exitDy=75;exitPerimeter=0;dashed=1;curved=1;startArrow=none;" edge="1" parent="1" source="JFETgiaBHRB2cvtjjYxP-38" target="9">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="-160" y="-505" as="sourcePoint"/>
+                        <mxPoint x="70" y="-695" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="-160" y="-750"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="YdW90meSYkwEAwjve5Y_" name="Doman Name">
+        <mxGraphModel dx="2704" dy="2269" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="BHLTMDswJKH9SOIM-LA3-1" value="Park car" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;hachureGap=4;fontFamily=Courier New;rounded=1;" vertex="1" parent="1">
+                    <mxGeometry x="-630" y="-480" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="BHLTMDswJKH9SOIM-LA3-2" value="Return parking ticket" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;hachureGap=4;fontFamily=Courier New;rounded=1;" vertex="1" parent="1">
+                    <mxGeometry x="-430" y="-480" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="BHLTMDswJKH9SOIM-LA3-3" value="Give parking ticket" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;hachureGap=4;fontFamily=Courier New;rounded=1;" vertex="1" parent="1">
+                    <mxGeometry x="-240" y="-480" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="BHLTMDswJKH9SOIM-LA3-4" value="Fetch car" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;hachureGap=4;fontFamily=Courier New;rounded=1;" vertex="1" parent="1">
+                    <mxGeometry x="-40" y="-480" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="qlc_KnHkusoNGH68g68K-1" value="Car parked" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#666600;hachureGap=4;fontFamily=Courier New;rounded=1;" vertex="1" parent="1">
+                    <mxGeometry x="-630" y="-190" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="qlc_KnHkusoNGH68g68K-2" value="Parking ticket returned" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#666600;hachureGap=4;fontFamily=Courier New;rounded=1;" vertex="1" parent="1">
+                    <mxGeometry x="-420" y="-190" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="qlc_KnHkusoNGH68g68K-3" value="Parking ticket given" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#666600;hachureGap=4;fontFamily=Courier New;rounded=1;" vertex="1" parent="1">
+                    <mxGeometry x="-230" y="-180" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="qlc_KnHkusoNGH68g68K-4" value="Car fetched" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#666600;hachureGap=4;fontFamily=Courier New;rounded=1;" vertex="1" parent="1">
+                    <mxGeometry x="-20" y="-180" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="-GCRtomLH-jaNe1DjDir-1" value="Parking Lot" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#fa6800;strokeColor=#C73500;hachureGap=4;fontFamily=Courier New;rounded=1;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="-630" y="-340" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="-GCRtomLH-jaNe1DjDir-2" value="Car" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#fa6800;strokeColor=#C73500;hachureGap=4;fontFamily=Courier New;rounded=1;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="-750" y="-340" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="VPDNdvxO78yCUIWZl4SL-1" value="Parking boy" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#fa6800;strokeColor=#C73500;hachureGap=4;fontFamily=Courier New;rounded=1;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="-490" y="-340" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="VPDNdvxO78yCUIWZl4SL-2" value="Parking Ticket" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#fa6800;strokeColor=#C73500;hachureGap=4;fontFamily=Courier New;rounded=1;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="-370" y="-340" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="jDYNtIU8RHbTTyb78n5P-1" value="&lt;b&gt;Q:&amp;nbsp;How to confirm the hierarchical relationship between domain names?&lt;/b&gt;&lt;br&gt;A: In terms of life cycle, for example, if the parking lot does not exist, then there is still a parking boy?" style="strokeWidth=1;shadow=0;dashed=0;align=left;html=1;shape=mxgraph.mockup.text.stickyNote2;fontColor=#666666;mainText=;fontSize=17;whiteSpace=wrap;fillColor=#ffffcc;strokeColor=#F62E00;verticalAlign=top;spacing=70;" vertex="1" parent="1">
+                    <mxGeometry x="-1490" y="-590" width="480" height="470" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
