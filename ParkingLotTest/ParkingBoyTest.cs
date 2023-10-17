@@ -6,7 +6,6 @@
     using System;
     using System.Collections.Generic;
     using Xunit;
-    using static System.Collections.Specialized.BitVector32;
 
     public class ParkingBoyTest
     {

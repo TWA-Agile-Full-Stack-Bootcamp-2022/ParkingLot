@@ -1,13 +1,14 @@
 ﻿using ParkingLot.Exceptions;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ParkingLot
 {
-    public class ParkingBoy
+    public class SmartParkingBoy
     {
         private List<ParkingLot> parkingLots;
 
-        public ParkingBoy(List<ParkingLot> parkingLots)
+        public SmartParkingBoy(List<ParkingLot> parkingLots)
         {
             this.parkingLots = parkingLots;
         }
@@ -30,13 +31,16 @@ namespace ParkingLot
 
         public Ticket Park(Car car)
         {
-            ParkingLot availableParkingLot = parkingLots.Find(parkingLot => !parkingLot.IsFull());
-            if (availableParkingLot == null)
+            ParkingLot parkingLotHasMostPositionLeft = parkingLots
+                .OrderByDescending(parkingLot => parkingLot.GetPositionLeft())
+                .First();
+
+            if (parkingLotHasMostPositionLeft == null)
             {
                 throw new NotEnoughPositionException();
             }
 
-            return availableParkingLot.Park(car);
+            return parkingLotHasMostPositionLeft.Park(car);
         }
     }
 }
