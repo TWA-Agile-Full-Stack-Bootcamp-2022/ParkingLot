@@ -17,6 +17,8 @@ namespace ParkingLot
             this.capacity = capacity;
         }
 
+        public int LeftPosition => capacity - parkingInfo.Count;
+
         public Ticket Park(Car car)
         {
             if (car == null)

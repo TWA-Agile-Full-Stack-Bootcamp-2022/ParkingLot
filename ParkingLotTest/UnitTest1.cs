@@ -115,5 +115,23 @@ namespace ParkingLotTest
             var exception = Assert.Throws<Exception>(() => parkingBoy.PickUp(null));
             Assert.Equal("Please provide your parking ticket.", exception.Message);
         }
+
+        [Fact]
+        public void Should_parking_car_to_next_parkingLot_when_first_parkingLot_is_full()
+        {
+            var parkingLot1 = new ParkingLot(1);
+            var parkingLot2 = new ParkingLot();
+            var parkingBoy = new ParkingBoy();
+            parkingBoy.AddParkingLot(parkingLot1);
+            parkingBoy.AddParkingLot(parkingLot2);
+            var car1 = new Car();
+            var car2 = new Car();
+            var ticket1 = parkingBoy.Park(car1);
+            var ticket2 = parkingBoy.Park(car2);
+
+            var car = parkingLot2.PickUp(ticket2);
+
+            Assert.Equal(car2, car);
+        }
     }
 }

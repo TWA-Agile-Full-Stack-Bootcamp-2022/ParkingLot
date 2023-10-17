@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ParkingLot
 {
@@ -11,9 +12,20 @@ namespace ParkingLot
             parkingLots.Add(parkingLot);
         }
 
+        public ParkingLot FindParkingLot()
+        {
+            return parkingLots.Find(parkingLot => parkingLot.LeftPosition > 0);
+        }
+
         public Ticket Park(Car car)
         {
-            return parkingLots[0].Park(car);
+            var parkingLot = FindParkingLot();
+            if (parkingLot == null)
+            {
+                throw new Exception("Not enough position.");
+            }
+
+            return parkingLot.Park(car);
         }
 
         public Car PickUp(Ticket ticket)
@@ -23,7 +35,8 @@ namespace ParkingLot
                 throw new Exception("Please provide your parking ticket.");
             }
 
-            var car = parkingLots[0].PickUp(ticket);
+            var car = parkingLots.Select(parkingLot => parkingLot.PickUp(ticket)).FirstOrDefault(c => c != null);
+
             if (car == null)
             {
                 throw new Exception("Unrecognized parking ticket.");
