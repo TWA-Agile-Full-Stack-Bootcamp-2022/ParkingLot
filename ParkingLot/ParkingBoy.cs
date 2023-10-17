@@ -17,6 +17,11 @@ namespace ParkingLot
 
         public Car Fetch(Ticket ticket)
         {
+            if (ticket == null)
+            {
+                throw new NoTicketProvidedException();
+            }
+
             ParkingLot parkingLotForTicket = parkingLots.Find(parkinglot => parkinglot.HasTicket(ticket));
             if (parkingLotForTicket == null)
             {

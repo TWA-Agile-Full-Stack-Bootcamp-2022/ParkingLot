@@ -225,8 +225,19 @@
         public void Should_throw_NoTicketProvidedException_when_fetch_without_ticket()
         {
             // Given
+            ParkingLot parkingLot = new ParkingLot();
+            ParkingLot anotherParkingLot = new ParkingLot();
+
+            List<ParkingLot> managedParkingLots = new List<ParkingLot>();
+            managedParkingLots.Add(parkingLot);
+            managedParkingLots.Add(anotherParkingLot);
+            ParkingBoy parkingBoy = new ParkingBoy(managedParkingLots);
+
             // When
+            Action action = () => parkingBoy.Fetch(null);
             // Then
+            Exception exception = Assert.Throws<NoTicketProvidedException>(action);
+            Assert.Equal("Please provide your parking ticket.", exception.Message);
         }
     }
 }
