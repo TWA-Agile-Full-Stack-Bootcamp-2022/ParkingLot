@@ -78,7 +78,7 @@ namespace ParkingLotTest
             parkingBoy.Park(new Car());
 
             var exception = Assert.Throws<Exception>(() => parkingBoy.Park(new Car()));
-            Assert.Equal("Parking lot is full.", exception.Message);
+            Assert.Equal("Not enough position.", exception.Message);
         }
 
         [Fact]

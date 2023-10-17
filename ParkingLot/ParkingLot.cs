@@ -26,7 +26,7 @@ namespace ParkingLot
 
             if (parkingInfo.Count >= capacity)
             {
-                throw new Exception("Parking lot is full.");
+                throw new Exception("Not enough position.");
             }
 
             if (car.IsParked())
