@@ -140,7 +140,7 @@ namespace ParkingLotTest
         {
             // Given
             Dictionary<Ticket, Car> ticketCarPairs = new Dictionary<Ticket, Car>();
-            for (int i = 0; i < ParkingLot.MaxCapacity; i++)
+            for (int i = 0; i < ParkingLot.DefaultCapacity; i++)
             {
                 ticketCarPairs.Add(new Ticket(), new Car());
             }
@@ -158,7 +158,7 @@ namespace ParkingLotTest
         {
             // Given
             Dictionary<Ticket, Car> ticketCarPairs = new Dictionary<Ticket, Car>();
-            for (int i = 0; i < ParkingLot.MaxCapacity; i++)
+            for (int i = 0; i < ParkingLot.DefaultCapacity; i++)
             {
                 ticketCarPairs.Add(new Ticket(), new Car());
             }
@@ -243,6 +243,27 @@ namespace ParkingLotTest
             float availablePositionRate = parkingLot.GetAvailablePositionRate();
             // Then
             Assert.True(Math.Abs(availablePositionRate - 0.8) < epsilon);
+        }
+
+        [Fact]
+        public void Should_return_the_default_capacity_when_get_Capacity_given_parking_wihtout_the_definition_of_capacity()
+        {
+            // Given
+            ParkingLot parkingLot = new ParkingLot();
+            // When
+            // Then
+            Assert.Equal(ParkingLot.DefaultCapacity, parkingLot.Capacity);
+        }
+
+        [Fact]
+        public void Should_return_the_given_capacity_when_get_Capacity_given_parking_wiht_the_definition_of_capacity()
+        {
+            // Given
+            int givenCapacity = 20;
+            ParkingLot parkingLot = new ParkingLot(givenCapacity);
+            // When
+            // Then
+            Assert.Equal(givenCapacity, parkingLot.Capacity);
         }
     }
 }

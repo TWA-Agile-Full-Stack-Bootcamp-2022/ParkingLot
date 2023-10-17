@@ -37,7 +37,7 @@
             ParkingLot anotherParkingLot = new ParkingLot();
 
             List<ParkingLot> managedParkingLots = new List<ParkingLot>();
-            for (int i = 0; i < ParkingLot.MaxCapacity; i++)
+            for (int i = 0; i < ParkingLot.DefaultCapacity; i++)
             {
                 parkingLot.Park(new Car());
             }
