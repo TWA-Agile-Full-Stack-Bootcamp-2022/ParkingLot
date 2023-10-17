@@ -133,5 +133,21 @@ namespace ParkingLotTest
 
             Assert.Equal(car2, car);
         }
+
+        [Fact]
+        public void Should_parking_car_to_more_position_parking_lot_when_given_a_car_to_smart_parking_boy()
+        {
+            var parkingLot1 = new ParkingLot(1);
+            var parkingLot2 = new ParkingLot();
+            var smartParkingBoy = new SmartParkingBoy();
+            smartParkingBoy.AddParkingLot(parkingLot1);
+            smartParkingBoy.AddParkingLot(parkingLot2);
+            var car = new Car();
+            var ticket = smartParkingBoy.Park(car);
+
+            var pickCar = parkingLot2.PickUp(ticket);
+
+            Assert.Equal(car, pickCar);
+        }
     }
 }

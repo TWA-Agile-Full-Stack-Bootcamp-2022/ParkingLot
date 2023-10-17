@@ -12,9 +12,11 @@ namespace ParkingLot
             parkingLots.Add(parkingLot);
         }
 
-        public ParkingLot FindParkingLot()
+        public List<ParkingLot> GetParkingLots() => parkingLots;
+
+        public virtual ParkingLot FindParkingLot()
         {
-            return parkingLots.Find(parkingLot => parkingLot.LeftPosition > 0);
+            return this.GetParkingLots().Find(parkingLot => parkingLot.LeftPosition > 0);
         }
 
         public Ticket Park(Car car)
