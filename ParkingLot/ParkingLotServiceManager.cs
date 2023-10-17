@@ -30,6 +30,7 @@ namespace ParkingLot
             return ManagementList[rnd.Next(ManagementList.Count)].ParkCar(car);
         }
 
+        // NOTE: There is no algorithm for fetch car, the key idea is to find which parking lot it was parked in and pick up the car
         public new Car FetchCar(ParkingTicket ticket) => Locate(ticket.LicensePlate)?.FetchCar(ticket)
             ?? ManagementList.FirstOrDefault(parkingBoy => parkingBoy.Locate(ticket.LicensePlate) != null)?.FetchCar(ticket)
             ?? throw new InvalidOperationException("Unrecognized parking ticket.");
