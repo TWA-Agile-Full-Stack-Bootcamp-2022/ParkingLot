@@ -149,5 +149,23 @@ namespace ParkingLotTest
 
             Assert.Equal(car, pickCar);
         }
+
+        [Fact]
+        public void Should_parking_car_to_large_position_rate_paring_lot_when_give_a_car_to_super_smart_parking_boy()
+        {
+            var parkingLot1 = new ParkingLot(10);
+            var parkingLot2 = new ParkingLot(2);
+            var superSmartParkingBoy = new SuperSmartParkingBoy();
+            superSmartParkingBoy.AddParkingLot(parkingLot1);
+            superSmartParkingBoy.AddParkingLot(parkingLot2);
+            parkingLot1.Park(new Car());
+
+            var car = new Car();
+            var ticket = superSmartParkingBoy.Park(car);
+
+            var pickCar = parkingLot2.PickUp(ticket);
+
+            Assert.Equal(car, pickCar);
+        }
     }
 }
