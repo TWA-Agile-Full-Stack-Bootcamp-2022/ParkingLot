@@ -15,7 +15,12 @@ namespace ParkingLot
 
         public Car PickUp(Ticket ticket)
         {
-            return parkingInfo[ticket];
+            if (parkingInfo.ContainsKey(ticket))
+            {
+                return parkingInfo[ticket];
+            }
+
+            return null;
         }
     }
 }
