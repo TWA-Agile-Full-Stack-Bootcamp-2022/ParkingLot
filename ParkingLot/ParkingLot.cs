@@ -24,8 +24,14 @@ namespace ParkingLot
                 throw new Exception("Parking lot is full.");
             }
 
+            if (car.IsParked())
+            {
+                throw new Exception("Car is parked.");
+            }
+
             Ticket ticket = new Ticket();
             parkingInfo.Add(ticket, car);
+            car.AddParkingLot(this);
             return ticket;
         }
 
@@ -35,6 +41,7 @@ namespace ParkingLot
             {
                 var car = parkingInfo[ticket];
                 parkingInfo.Remove(ticket);
+                car.RemoveParkingLot();
                 return car;
             }
 
