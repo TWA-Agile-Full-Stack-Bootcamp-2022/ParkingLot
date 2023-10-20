@@ -73,5 +73,27 @@ namespace ParkingLotTest
             Assert.NotNull(boy.Park("car1"));
             Assert.Null(boy.Park("car2"));
         }
+
+        [Fact]
+        public void Should_get_same_ticket_when_park_the_same_car()
+        {
+            ParkingBoy boy = new ParkingBoy();
+            const string Car1 = "car1";
+            string ticket = boy.Park(Car1);
+
+            string doubleTicket = boy.Park(Car1);
+
+            Assert.Equal(ticket, doubleTicket);
+        }
+
+        [Fact]
+        public void Should_get_null_with_null_car_when_park()
+        {
+            ParkingBoy boy = new ParkingBoy();
+
+            string nullTicket = boy.Park(null);
+
+            Assert.Null(nullTicket);
+        }
     }
 }

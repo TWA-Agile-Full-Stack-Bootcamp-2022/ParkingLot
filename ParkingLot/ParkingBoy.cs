@@ -12,9 +12,25 @@
 
         public string Park(string car)
         {
+            if (car == null)
+            {
+                return null;
+            }
+
             if (parkingLot.Count >= capacity)
             {
                 return null;
+            }
+
+            if (parkingLot.ContainsValue(car))
+            {
+                foreach (var item in parkingLot)
+                {
+                    if (item.Value.Equals(car))
+                    {
+                        return item.Key;
+                    }
+                }
             }
 
             string ticket = car + "ticket";
