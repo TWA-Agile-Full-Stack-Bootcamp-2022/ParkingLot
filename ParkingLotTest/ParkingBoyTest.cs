@@ -62,5 +62,16 @@ namespace ParkingLotTest
 
             Assert.Null(noCar);
         }
+
+        [Fact]
+        public void Should_not_fetch_ticket_when_reach_the_capacity()
+        {
+            ParkingBoy boy = new ParkingBoy();
+            Assert.Equal(10, boy.Capacity);
+            boy.Capacity = 1;
+
+            Assert.NotNull(boy.Park("car1"));
+            Assert.Null(boy.Park("car2"));
+        }
     }
 }
