@@ -20,7 +20,9 @@
                 return null;
             }
 
-            return parkingLot[ticket];
+            string car = parkingLot[ticket];
+            parkingLot.Remove(ticket);
+            return car;
         }
     }
 }
