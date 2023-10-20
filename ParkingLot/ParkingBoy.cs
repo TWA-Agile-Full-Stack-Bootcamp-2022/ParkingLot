@@ -15,6 +15,11 @@
 
         public string Fetch(string ticket)
         {
+            if (ticket == null || !parkingLot.ContainsKey(ticket))
+            {
+                return null;
+            }
+
             return parkingLot[ticket];
         }
     }
