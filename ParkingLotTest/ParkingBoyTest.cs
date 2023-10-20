@@ -33,11 +33,12 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Should_get_null_without_ticket()
+        public void Should_not_able_to_fetch_car_with_null_ticket()
         {
             ParkingBoy boy = new ParkingBoy();
-            string noCar = boy.Fetch(null);
-            Assert.Null(noCar);
+
+            NullTicketException e = Assert.Throws<NullTicketException>(() => boy.Fetch(null));
+            Assert.Equal("Please provide your parking ticket", e.Message);
         }
 
         [Fact]
@@ -45,22 +46,20 @@ namespace ParkingLotTest
         {
             ParkingBoy boy = new ParkingBoy();
 
-            string noCar = boy.Fetch("wrong ticket");
-
-            Assert.Null(noCar);
+            NullTicketException e = Assert.Throws<NullTicketException>(() => boy.Fetch("wrong ticket"));
+            Assert.Equal("Unrecognized parking ticket", e.Message);
         }
 
         [Fact]
-        public void Should_get_null_with_a_used_ticket()
+        public void Should_get_exception_with_a_used_ticket()
         {
             ParkingBoy boy = new ParkingBoy();
             const string Car1 = "car1";
             string ticket1 = boy.Park(Car1);
 
             boy.Fetch(ticket1);
-            string noCar = boy.Fetch(ticket1);
-
-            Assert.Null(noCar);
+            NullTicketException e = Assert.Throws<NullTicketException>(() => boy.Fetch(ticket1));
+            Assert.Equal("Unrecognized parking ticket", e.Message);
         }
 
         [Fact]
@@ -71,7 +70,8 @@ namespace ParkingLotTest
             boy.Capacity = 1;
 
             Assert.NotNull(boy.Park("car1"));
-            Assert.Null(boy.Park("car2"));
+            InsufficientPositionException e = Assert.Throws<InsufficientPositionException>(() => boy.Park("car2"));
+            Assert.Equal("Not enough position", e.Message);
         }
 
         [Fact]

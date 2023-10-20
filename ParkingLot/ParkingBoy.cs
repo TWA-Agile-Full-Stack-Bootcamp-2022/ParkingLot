@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Runtime.Serialization;
 
     public class ParkingBoy
     {
@@ -19,7 +20,7 @@
 
             if (parkingLot.Count >= capacity)
             {
-                return null;
+                throw new InsufficientPositionException("Not enough position");
             }
 
             if (parkingLot.ContainsValue(car))
@@ -40,9 +41,14 @@
 
         public string Fetch(string ticket)
         {
-            if (ticket == null || !parkingLot.ContainsKey(ticket))
+            if (ticket == null)
             {
-                return null;
+                throw new NullTicketException("Please provide your parking ticket");
+            }
+
+            if (!parkingLot.ContainsKey(ticket))
+            {
+                throw new NullTicketException("Unrecognized parking ticket");
             }
 
             string car = parkingLot[ticket];
