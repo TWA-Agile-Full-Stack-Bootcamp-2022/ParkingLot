@@ -1,59 +1,36 @@
-﻿namespace ParkingLot
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Runtime.Serialization;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace ParkingLot
+{
     public class ParkingBoy
     {
-        private readonly Dictionary<string, string> parkingLot = new Dictionary<string, string>();
-        private int capacity = 10;
+        private readonly ParkingLot parkingLot = new ParkingLot();
+        private List<ParkingLot> parkingLots = new List<ParkingLot>();
 
-        public int Capacity { get => capacity; set => capacity = value; }
+        public ParkingBoy()
+        {
+            parkingLots.Add(new ParkingLot());
+            parkingLots.Add(new ParkingLot());
+        }
+
+        public int Capacity
+        {
+            get => parkingLot.Capacity;
+            set => parkingLot.Capacity = value;
+        }
 
         public string Park(string car)
         {
-            if (car == null)
-            {
-                return null;
-            }
-
-            if (parkingLot.Count >= capacity)
-            {
-                throw new InsufficientPositionException("Not enough position");
-            }
-
-            if (parkingLot.ContainsValue(car))
-            {
-                foreach (var item in parkingLot)
-                {
-                    if (item.Value.Equals(car))
-                    {
-                        return item.Key;
-                    }
-                }
-            }
-
-            string ticket = car + "ticket";
-            parkingLot.Add(ticket, car);
-            return ticket;
+            return parkingLot.Park(car);
         }
 
         public string Fetch(string ticket)
         {
-            if (ticket == null)
-            {
-                throw new NullTicketException("Please provide your parking ticket");
-            }
-
-            if (!parkingLot.ContainsKey(ticket))
-            {
-                throw new NullTicketException("Unrecognized parking ticket");
-            }
-
-            string car = parkingLot[ticket];
-            parkingLot.Remove(ticket);
-            return car;
+            return parkingLot.Fetch(ticket);
         }
     }
 }
