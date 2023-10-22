@@ -46,7 +46,7 @@ namespace ParkingLotTest
         {
             ParkingBoy boy = new ParkingBoy();
 
-            NullTicketException e = Assert.Throws<NullTicketException>(() => boy.Fetch("wrong ticket"));
+            InvalidTicketException e = Assert.Throws<InvalidTicketException>(() => boy.Fetch("wrong ticket"));
             Assert.Equal("Unrecognized parking ticket", e.Message);
         }
 
@@ -58,7 +58,7 @@ namespace ParkingLotTest
             string ticket1 = boy.Park(Car1);
 
             boy.Fetch(ticket1);
-            NullTicketException e = Assert.Throws<NullTicketException>(() => boy.Fetch(ticket1));
+            InvalidTicketException e = Assert.Throws<InvalidTicketException>(() => boy.Fetch(ticket1));
             Assert.Equal("Unrecognized parking ticket", e.Message);
         }
 
@@ -66,7 +66,7 @@ namespace ParkingLotTest
         public void Should_not_fetch_ticket_when_reach_the_capacity()
         {
             ParkingBoy boy = new ParkingBoy();
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < boy.GetCapacity(); i++)
             {
                 Assert.NotNull(boy.Park($"car{i}"));
             }

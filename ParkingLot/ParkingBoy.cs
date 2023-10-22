@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,7 +9,6 @@ namespace ParkingLot
 {
     public class ParkingBoy
     {
-        private readonly ParkingLot parkingLot = new ParkingLot();
         private List<ParkingLot> parkingLots = new List<ParkingLot>();
 
         public ParkingBoy()
@@ -19,12 +19,47 @@ namespace ParkingLot
 
         public string Park(string car)
         {
-            return parkingLot.Park(car);
+            foreach (var lot in parkingLots)
+            {
+                if (lot.Avaliable())
+                {
+                    return lot.Park(car);
+                }
+                else
+                {
+                    continue;
+                }
+            }
+
+            throw new InsufficientPositionException("Not enough position");
         }
 
         public string Fetch(string ticket)
         {
-            return parkingLot.Fetch(ticket);
+            foreach (var lot in parkingLots)
+            {
+                try
+                {
+                    return lot.Fetch(ticket);
+                }
+                catch (InvalidTicketException ex)
+                {
+                    continue;
+                }
+            }
+
+            throw new InvalidTicketException("Unrecognized parking ticket");
+        }
+
+        public int GetCapacity()
+        {
+            int sum = 0;
+            foreach (var lot in parkingLots)
+            {
+                sum += lot.Capacity;
+            }
+
+            return sum;
         }
     }
 }

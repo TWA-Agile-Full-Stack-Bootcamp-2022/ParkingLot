@@ -18,7 +18,7 @@
                 return null;
             }
 
-            if (parkingLot.Count >= capacity)
+            if (!Avaliable())
             {
                 throw new InsufficientPositionException("Not enough position");
             }
@@ -39,6 +39,11 @@
             return ticket;
         }
 
+        public bool Avaliable()
+        {
+            return parkingLot.Count < capacity;
+        }
+
         public string Fetch(string ticket)
         {
             if (ticket == null)
@@ -48,7 +53,7 @@
 
             if (!parkingLot.ContainsKey(ticket))
             {
-                throw new NullTicketException("Unrecognized parking ticket");
+                throw new InvalidTicketException("Unrecognized parking ticket");
             }
 
             string car = parkingLot[ticket];
