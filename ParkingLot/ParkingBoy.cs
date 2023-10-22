@@ -9,7 +9,7 @@ namespace ParkingLot
 {
     public class ParkingBoy
     {
-        private List<ParkingLot> parkingLots = new List<ParkingLot>();
+        private readonly List<ParkingLot> parkingLots = new List<ParkingLot>();
 
         public ParkingBoy()
         {
@@ -17,7 +17,9 @@ namespace ParkingLot
             parkingLots.Add(new ParkingLot());
         }
 
-        public string Park(string car)
+        internal List<ParkingLot> ParkingLots => parkingLots;
+
+        public virtual string Park(string car)
         {
             foreach (var lot in parkingLots)
             {
@@ -62,4 +64,13 @@ namespace ParkingLot
             return sum;
         }
     }
-}
+
+    public class SmartParkingBoy : ParkingBoy
+    {
+        public override string Park(string car)
+        {
+            ParkingLots.Sort((a, b) => a.AvaliablePosition() - b.AvaliablePosition());
+            return base.Park(car);
+        }
+    }
+ }

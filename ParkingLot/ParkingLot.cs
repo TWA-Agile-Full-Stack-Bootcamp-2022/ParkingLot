@@ -60,5 +60,10 @@
             parkingLot.Remove(ticket);
             return car;
         }
+
+        public int AvaliablePosition()
+        {
+            return Capacity - parkingLot.Count;
+        }
     }
 }
