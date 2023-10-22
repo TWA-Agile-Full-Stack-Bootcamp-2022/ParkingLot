@@ -17,12 +17,6 @@ namespace ParkingLot
             parkingLots.Add(new ParkingLot());
         }
 
-        public int Capacity
-        {
-            get => parkingLot.Capacity;
-            set => parkingLot.Capacity = value;
-        }
-
         public string Park(string car)
         {
             return parkingLot.Park(car);

@@ -66,10 +66,11 @@ namespace ParkingLotTest
         public void Should_not_fetch_ticket_when_reach_the_capacity()
         {
             ParkingBoy boy = new ParkingBoy();
-            Assert.Equal(10, boy.Capacity);
-            boy.Capacity = 1;
+            for (int i = 0; i < 10; i++)
+            {
+                Assert.NotNull(boy.Park($"car{i}"));
+            }
 
-            Assert.NotNull(boy.Park("car1"));
             InsufficientPositionException e = Assert.Throws<InsufficientPositionException>(() => boy.Park("car2"));
             Assert.Equal("Not enough position", e.Message);
         }
