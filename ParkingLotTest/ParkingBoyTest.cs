@@ -1,6 +1,9 @@
 namespace ParkingLotTest
 {
+    using Castle.Components.DictionaryAdapter.Xml;
+    using Moq;
     using ParkingLot;
+    using System.Collections.Generic;
     using System.Reflection;
     using Xunit;
 
@@ -95,6 +98,42 @@ namespace ParkingLotTest
             string nullTicket = boy.Park(null);
 
             Assert.Null(nullTicket);
+        }
+
+        [Fact]
+        public void Should_park_in_max_position_when_with_smart_parkingboy()
+        {
+            Mock<ParkingLot> mock1 = new Mock<ParkingLot>();
+            Mock<ParkingLot> mock2 = new Mock<ParkingLot>();
+            List<ParkingLot> parkingLots = new List<ParkingLot>();
+            parkingLots.Add(mock1.Object);
+            parkingLots.Add(mock2.Object);
+            SmartParkingBoy boy = new SmartParkingBoy(parkingLots);
+
+            mock1.Setup(x => x.AvailablePosition()).Returns(4);
+            mock2.Setup(x => x.AvailablePosition()).Returns(5);
+            boy.Park("car1");
+
+            mock1.Verify(x => x.Park("car1"), Times.Never());
+            mock2.Verify(x => x.Park("car1"), Times.Once());
+        }
+
+        [Fact]
+        public void Should_park_in_max_positionRate_when_with_superSmartBoy()
+        {
+            Mock<ParkingLot> mock1 = new Mock<ParkingLot>();
+            Mock<ParkingLot> mock2 = new Mock<ParkingLot>();
+            List<ParkingLot> parkingLots = new List<ParkingLot>();
+            parkingLots.Add(mock1.Object);
+            parkingLots.Add(mock2.Object);
+            SuperSmartParkingBoy boy = new SuperSmartParkingBoy(parkingLots);
+
+            mock1.Setup(x => x.AvailableRate()).Returns(4.3F);
+            mock2.Setup(x => x.AvailableRate()).Returns(4.4F);
+            boy.Park("car1");
+
+            mock1.Verify(x => x.Park("car1"), Times.Never());
+            mock2.Verify(x => x.Park("car1"), Times.Once());
         }
     }
 }

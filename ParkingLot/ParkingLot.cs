@@ -4,14 +4,14 @@
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    internal class ParkingLot
+    public class ParkingLot
     {
         private readonly Dictionary<string, string> parkingLot = new Dictionary<string, string>();
         private int capacity = 10;
 
         public int Capacity { get => capacity; set => capacity = value; }
 
-        public string Park(string car)
+        public virtual string Park(string car)
         {
             if (car == null)
             {
@@ -61,9 +61,14 @@
             return car;
         }
 
-        public int AvaliablePosition()
+        public virtual int AvailablePosition()
         {
             return Capacity - parkingLot.Count;
+        }
+
+        public virtual float AvailableRate()
+        {
+            return AvailablePosition() / Capacity;
         }
     }
 }

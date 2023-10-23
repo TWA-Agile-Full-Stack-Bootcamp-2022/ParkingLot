@@ -9,15 +9,21 @@ namespace ParkingLot
 {
     public class ParkingBoy
     {
-        private readonly List<ParkingLot> parkingLots = new List<ParkingLot>();
+        private readonly List<ParkingLot> parkingLots;
 
         public ParkingBoy()
         {
+            parkingLots = new List<ParkingLot>();
             parkingLots.Add(new ParkingLot());
             parkingLots.Add(new ParkingLot());
         }
 
-        internal List<ParkingLot> ParkingLots => parkingLots;
+        public ParkingBoy(List<ParkingLot> parkingLots)
+        {
+            this.parkingLots = parkingLots;
+        }
+
+        private protected List<ParkingLot> ParkingLots => parkingLots;
 
         public virtual string Park(string car)
         {
@@ -67,9 +73,34 @@ namespace ParkingLot
 
     public class SmartParkingBoy : ParkingBoy
     {
+        public SmartParkingBoy()
+        {
+        }
+
+        public SmartParkingBoy(List<ParkingLot> parkingLots) : base(parkingLots)
+        {
+        }
+
         public override string Park(string car)
         {
-            ParkingLots.Sort((a, b) => a.AvaliablePosition() - b.AvaliablePosition());
+            ParkingLots.Sort((a, b) => b.AvailablePosition().CompareTo(a.AvailablePosition()));
+            return base.Park(car);
+        }
+    }
+
+    public class SuperSmartParkingBoy : ParkingBoy
+    {
+        public SuperSmartParkingBoy()
+        {
+        }
+
+        public SuperSmartParkingBoy(List<ParkingLot> parkingLots) : base(parkingLots)
+        {
+        }
+
+        public override string Park(string car)
+        {
+            ParkingLots.Sort((a, b) => b.AvailableRate().CompareTo(a.AvailableRate()));
             return base.Park(car);
         }
     }
